@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "SquidController@parseLogs");
 
 Auth::routes();
-
+Route::get('/{name}', function($name)
+{
+//    $url = url('report');
+    return view($name);
+});
 Route::get('/home', 'HomeController@index');
