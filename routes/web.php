@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "SquidController@parseLogs");
 
 Auth::routes();
 Route::get('/{name}', function($name)
