@@ -1,3 +1,19 @@
+.sprite(@position_x, @position_y){
+    width: 18px;
+    height: 18px;
+    border-radius: 50px;
+    background-image: url(/public/img/spraite/3c5e0c242e6056f9c6661bae22249286.jpg);
+    background-size: 200px;
+    background-repeat: no-repeat;
+
+    background-position-x:@position_x;
+    background-position-y:@position_y;
+
+    span{
+        margin-left:25px;
+    }
+}
+
 .collapseOne,.collapseTwo,.collapseThree{
     display: none;
 }
@@ -14,14 +30,22 @@
     width: 1400px !important;
 }
 .sprite{
-    width: 18px;
-    height: 18px;
-    border-radius: 50px;
-    background-image: url(img/spraite/3c5e0c242e6056f9c6661bae22249286.jpg);
-    background-size: 200px;
-    background-repeat: no-repeat;
     &_fb{
-        background-position-x:-7.6px;
-        background-position-y:-7px;
+        .sprite(-7.6px,-7px);
+    }
+    &_vk{
+        .sprite(-103px,-7.5px);
+    }
+    &_odn{
+        .sprite(-126.5157px,-7.5px);
+    }
+    &_twit{
+        .sprite(-31.5px,-7.5px);
+    }
+    &_inst{
+        .sprite(-79px,-7.5px);
+    }
+    &_you{
+        .sprite(-7.4px,-31.5px);
     }
 }

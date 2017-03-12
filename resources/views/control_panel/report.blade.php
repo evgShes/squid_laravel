@@ -36,7 +36,7 @@
             <option value="2">Option 2</option>
             <option value="3">Option 3</option>
         </select>
-        <label>Пользоатель:</label>
+        <label>Пользователь:</label>
     </div>
 </div>
 <div class="row">
