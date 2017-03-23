@@ -25,11 +25,15 @@ class SquidController extends Controller
     public function mainFunc(Request $request)
     {
 
-        dd(exec("squid -n Squid -f c:/squid/etc/squid.conf -k reconfigure"));
+
+        dd(parse_url('https://vk.com/feed'));
+//        dd(exec("squid -n Squid -f c:/squid/etc/squid.conf -k reconfigure"));
+//        $this->initialDeny();
 //        if($this->initialDeny()){
-//         $this->squidRestart();
+         $this->squidRestart();
 //        }
     }
+
 
     public function getAclDeny()
     {
