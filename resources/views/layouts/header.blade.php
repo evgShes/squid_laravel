@@ -18,14 +18,14 @@
 <header>
     <ul id="dropdown1" class="dropdown-content">
         <li><a href="#!">Смена пароля</a></li>
-        <li><a href="#!">Выход</a></li>
+        <li><a href="{{ route('logout') }}">Выход</a></li>
     </ul>
     <nav class="indigo darken-3">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo center">Система распределения сетевыми ресурасами
                 ЕРЦ ЛНР</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">perm_identity</i>admin<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">perm_identity</i>{{ Auth::user()->login }}<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </div>
     </nav>

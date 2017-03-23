@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('/', "SquidController@parseLogs");
+Route::get('/', "SquidController@mainFunc");
 
 Auth::routes();
+Route::get('logout',[
+    'as'=>'logout',
+    'uses'=>'Auth\LoginController@logout'
+]);
 Route::get('/={name?}', function($name)
 {
 //    $url = url('report');
@@ -21,6 +25,10 @@ Route::get('/={name?}', function($name)
 });
 Route::get('/home', 'HomeController@index');
 
-Route::get('view',function (){
-    return view('control_panel.settings');
+
+
+Route::group(['middleware'=>'auth'],function (){
+    Route::get('view',function (){
+        return view('control_panel.settings');
+    });
 });
