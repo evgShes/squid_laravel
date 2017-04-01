@@ -11,5 +11,6 @@
 <script src="{{ asset('js/function.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 <script src="{{ asset('js/add_users.js') }}"></script>
+<script src="{{ asset('js/control_panel.js') }}"></script>
 </body>
 </html>
