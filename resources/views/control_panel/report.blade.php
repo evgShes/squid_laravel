@@ -8,12 +8,23 @@
 <!--</select>-->
 {{--<h4 class="truncate center-align">Отчет</h4>--}}
 <div class="row">
+    <div class="row">
+        <div class=" input-field col s12">
+            <select>
+                <option value="" disabled selected>Выберите пользователя</option>
+                <option value="1">Феденко Кристина Юрьевна</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+            <label>Пользователь:</label>
+        </div>
+    </div>
     <div class="input-field col s12">
         <select>
             <option value="" disabled selected>Выберите тип отчета</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
+            <option value="1">Годовой</option>
+            <option value="2">Месячный</option>
+            <option value="3">Ежедневный</option>
         </select>
         <label>Тип отчета:</label>
     </div>
@@ -28,17 +39,7 @@
         <input type="date" class="date_bootstrap" id="date_to">
     </div>
 </div>
-<div class="row">
-    <div class=" input-field col s12">
-        <select>
-            <option value="" disabled selected>Выберите пользователя</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-        </select>
-        <label>Пользователь:</label>
-    </div>
-</div>
+
 <div class="row">
     <div class="input-field col m2 offset-m10">
         <button class="btn waves-effect waves-light blue" type="button">Сформировать</button>

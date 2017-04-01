@@ -37,7 +37,7 @@
                 <li>
                     <div class="collapsible-header"><i class="material-icons">recent_actors</i>Пользователи</div>
                     <div class="collapsible-body">
-
+                        <a href="{{ url('users.users') }}" class="collection-item">Феденко Кристина Юрьевна</a>
                     </div>
                 </li>
                 <li>
