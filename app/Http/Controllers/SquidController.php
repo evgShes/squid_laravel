@@ -13,6 +13,10 @@ class SquidController extends Controller
     protected $path_squid_log;
     protected $path_deny_rules;
     protected $path_squid_conf;
+    protected $anchor_config;
+    protected $path_domains_rules;
+    protected $end = PHP_EOL;
+
 
     public function __construct()
     {
@@ -20,25 +24,31 @@ class SquidController extends Controller
         $this->path_squid_log = config('squid.path_squid_log');
         $this->path_deny_rules = config('squid.path_deny_rules');
         $this->path_squid_conf = config('squid.path_squid_conf');
+        $this->anchor_config = config('squid.anchor_config');
+        $this->path_domains_rules = config('squid.path_domains_rules');
     }
 
     public function mainFunc(Request $request)
     {
 
 
-        dd(parse_url('https://vk.com/feed'));
+//        dd(parse_url('https://vk.com/feed'));
 //        dd(exec("squid -n Squid -f c:/squid/etc/squid.conf -k reconfigure"));
-//        $this->initialDeny();
+        dd($this->initialDeny());
 //        if($this->initialDeny()){
-         $this->squidRestart();
+//        $this->squidRestart();
 //        }
     }
 
 
     public function getAclDeny()
     {
-        return 'acl deny_rules src "'.$this->path_deny_rules.'"'.PHP_EOL.'http_access deny deny_rules'.PHP_EOL;
+        return 'acl deny_rules dst "' . $this->path_deny_rules . '"' . $this->end .
+            'acl domain_rules dstdomain "' . $this->path_domains_rules . '"' . $this->end .
+            $this->end .
+            'http_access deny deny_rules domain_rules' . $this->end;
     }
+
     public function getPathAccessLog()
     {
         return $this->path_squid . $this->path_squid_log;
@@ -99,13 +109,14 @@ class SquidController extends Controller
     public function squidRestart()
     {
         $response = false;
-//        $stop = shell_exec("net stop Squid");
-//        if ($stop) {
-//            shell_exec("net start Squid");
-//            $response = true;
-//        }
-        $recon = shell_exec("squid -n Squid -f c:/squid/etc/squid.conf -k reconfigure");
-        if ($recon) $response = true;
+        $stop = shell_exec("net stop Squid");
+        if ($stop) {
+            shell_exec("net start Squid");
+            $response = true;
+        }
+//        $recon = shell_exec("squid -n Squid -f c:/squid/etc/squid.conf -k reconfigure");
+//        if ($recon) $response = true;
+
         return $response;
     }
 
@@ -115,13 +126,19 @@ class SquidController extends Controller
         $response = false;
         $file = $this->path_deny_rules;
         if (file_exists($file)) {
-            $acc_conf = $this->getPathSquidConf();
-            $acl_deny = $this->getAclDeny();
-            if($this->searchInFile($acc_conf,$acl_deny)){
-               $response = true;
-            }else{
-                $append_to_conf = File::append($acc_conf,$acl_deny);
+            $acc_conf_path = $this->getPathSquidConf();
+            $acl_deny_string = $this->getAclDeny();
+            if ($this->searchInFile($acc_conf_path, $acl_deny_string)) {
                 $response = true;
+            } else {
+                $file_content = file_get_contents($acc_conf_path);
+                $anchor = $this->anchor_config;
+                $position = stripos($file_content, $anchor);
+                $insert_string = substr($file_content, 0, $position) . $this->end . $acl_deny_string . $this->end . substr($file_content, $position);
+                $rule_put = File::put($acc_conf_path,$insert_string);
+                if($rule_put){
+                    $response = true;
+                }
             };
         }
         return $response;
