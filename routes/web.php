@@ -18,7 +18,7 @@ Route::get('logout',[
     'as'=>'logout',
     'uses'=>'Auth\LoginController@logout'
 ]);
-Route::get('/={name?}', function($name)
+Route::get('/{name?}', function($name)
 {
 //    $url = url('report');
     return view($name);

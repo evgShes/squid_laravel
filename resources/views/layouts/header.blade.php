@@ -25,7 +25,7 @@
             <a href="#" class="brand-logo center">Система распределения сетевыми ресурасами
                 ЕРЦ ЛНР</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">perm_identity</i>{{ Auth::user()->login }}<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">perm_identity</i>@if(Auth::check()) Auth::user()->login @endif<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </div>
     </nav>
@@ -45,6 +45,7 @@
                     <div class="collapsible-body">
                         <div class="collection">
                             <a href="#!" class="collection-item">Поиск</a>
+                            <a href="{{ url('systems.add_users') }}" class="collection-item">Добавить пользователя</a>
                         </div>
                     </div>
                 </li>
