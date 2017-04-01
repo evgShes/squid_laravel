@@ -4,17 +4,17 @@
     <div class="row">
         <div class="input-field col m12">
 
-            <input type="text" class="" id="employer_name">
+            <input type="text" class="" name="employer_name" id="employer_name">
             <label for="employer_name">Ф.И.О. сотрудника:</label>
         </div>
     </div>
     <div class="row">
-        <div class="col m6 input-field"><input type="text" id=""><label for="">Логин сотрудника:</label></div>
-        <div class="col m6 input-field"><input type="text" id=""><label for="">IP рабочего места сотрудника:</label></div>
+        <div class="col m6 input-field"><input type="text" name="employer_login" id="employer_login"><label for="employer_login">Логин сотрудника:</label></div>
+        <div class="col m6 input-field"><input type="text" name="employer_ip" id="employer_ip"><label for="employer_ip">IP рабочего места сотрудника:</label></div>
     </div>
     <div class="row">
         <div class="input-field col m6">
-            <select>
+            <select name="employer_department">
                 <option value="" selected disabled>Выбирите отдел:</option>
                 <option value="1">Отдел кадров</option>
                 <option value="2">Отдел тестирования</option>
@@ -29,17 +29,17 @@
         </div>
         <div class="input-field col m6">
 
-            <input type="text" class="" id="employer_post">
+            <input type="text" class="" id="employer_post" name="employer_post">
             <label for="employer_post">Должность:</label>
         </div>
     </div>
     <div class="row">
         <div class="input-field col m6">
-            <input type="email" id="employer_email" class="validate">
+            <input type="email" id="employer_email" class="validate" name="employer_email">
             <label for="employer_email" data-error="Формат e-mail должен быть в формате example@ex.le">E-mail сотрудника:</label>
         </div>
         <div class="input-field col m6">
-            <input type="tel" id="employer_phone" class="validate">
+            <input type="tel" id="employer_phone" name="employer_phone" class="validate">
             <label for="employer_phone">Телефон сотрудника:</label>
         </div>
     </div>
