@@ -39,6 +39,8 @@ function handlerAllErrros(jqXHR) {
             return errorsMess(data.errors)
         } else if (data.noty != undefined) {
             notyError(data.noty);
+        }else if(data.toast != undefined){
+
         } else {
             handlerErrors(data);
         }
