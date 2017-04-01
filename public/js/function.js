@@ -40,7 +40,7 @@ function handlerAllErrros(jqXHR) {
         } else if (data.noty != undefined) {
             notyError(data.noty);
         }else if(data.toast != undefined){
-
+            Materialize.toast(data.toast, 3000,'rounded red accent-4');
         } else {
             handlerErrors(data);
         }
