@@ -55,7 +55,7 @@
                     <div class="collapsible-body">
                         <div class="collection">
                             <a href="#!" class="collection-item">Поиск</a>
-                            <a href="{{ url('systems.add_users') }}" class="collection-item">Добавить пользователя</a>
+                            <a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>
                         </div>
                     </div>
                 </li>
@@ -64,8 +64,8 @@
                     <div class="collapsible-body">
                         <div class="collection">
                             <a href="#!" class="collection-item">Статистика</a>
-                            <a href="{{ url('control_panel.settings') }}" class="collection-item">Настройки</a>
-                            <a href="{{ url('control_panel.report') }}" class="collection-item">Отчеты</a>
+                            <a href="{{ route('view','control_panel.settings') }}" class="collection-item">Настройки</a>
+                            <a href="{{ route('view','control_panel.report') }}" class="collection-item">Отчеты</a>
 
                         </div>
                     </div>
