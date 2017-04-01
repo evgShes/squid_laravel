@@ -2,14 +2,10 @@
 @section('content')
 
     <div class="row">
-        <div class="input-field col m12">
-
+        <div class="col m6 input-field">
             <input type="text" class="" name="employer_name" id="employer_name">
             <label for="employer_name">Ф.И.О. сотрудника:</label>
         </div>
-    </div>
-    <div class="row">
-        <div class="col m6 input-field"><input type="text" name="employer_login" id="employer_login"><label for="employer_login">Логин сотрудника:</label></div>
         <div class="col m6 input-field"><input type="text" name="employer_ip" id="employer_ip"><label for="employer_ip">IP рабочего места сотрудника:</label></div>
     </div>
     <div class="row">
