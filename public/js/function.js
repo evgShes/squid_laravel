@@ -64,3 +64,12 @@ function handlerAllErrros(jqXHR) {
         alert("Ошибка отправки формы!");
     }
 }
+
+// Простой пост запрос о обработкой  errors
+function simplePostAjax(url, data_form, callback) {
+    $.post(url, data_form, function (data) {
+        if (typeof callback == "function") callback(data);
+    }, 'JSON').fail(function (jqXHR) {
+        handlerAllErrros(jqXHR);
+    });
+}
