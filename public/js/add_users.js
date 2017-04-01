@@ -8,10 +8,10 @@ jQuery(function($){
             url: url,
             data: data_form,
             success: function(){
-                Materialize.toast('Успешно', 3000, 'success_my rounded');
+                Materialize.toast('Успешно', 3000, 'green darken-4 rounded');
             },
             error: function(){
-                Materialize.toast('Действие не выполнено', 3000,'rounded error_my');
+                Materialize.toast('Действие не выполнено', 3000,'rounded red accent-4');
             }
         });
     });
