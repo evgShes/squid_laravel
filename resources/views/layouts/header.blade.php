@@ -5,7 +5,7 @@
     <title>Title</title>
     <!--<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
 
-    <link href="{{ asset('materialize/css/materialize.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('materialize/css/materialize.css') }}" rel="stylesheet">
     <link href="{{ asset('materialize/fonts/icon.css') }}" rel="stylesheet">
     <link href="{{ asset('query/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">

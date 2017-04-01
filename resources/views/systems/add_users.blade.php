@@ -5,8 +5,12 @@
         <div class="input-field col m12">
 
             <input type="text" class="" id="employer_name">
-            <label for="employer_name">Имя сотрудника:</label>
+            <label for="employer_name">Ф.И.О. сотрудника:</label>
         </div>
+    </div>
+    <div class="row">
+        <div class="col m6 input-field"><input type="text" id=""><label for="">Логин сотрудника:</label></div>
+        <div class="col m6 input-field"><input type="text" id=""><label for="">IP рабочего места сотрудника:</label></div>
     </div>
     <div class="row">
         <div class="input-field col m6">
@@ -39,10 +43,12 @@
             <label for="employer_phone">Телефон сотрудника:</label>
         </div>
     </div>
-    <div class="row">
-        <div class="col m6 input-field"><label for="employer_password">Пароль:</label><input type="password" id="employer_password"></div>
-        <div class="col m6 input-field"><label for="employer_repeat_password">Повторите пароль:</label><input type="password" id="employer_repeat_password"></div>
-    </div>
+
+    {{--<div class="row">--}}
+        {{--<div class="col m6 input-field"><label for="employer_password">Пароль:</label><input type="password" id="employer_password"></div>--}}
+        {{--<div class="col m6 input-field"><label for="employer_repeat_password">Повторите пароль:</label><input type="password" id="employer_repeat_password"></div>--}}
+    {{--</div>--}}
+
     <div class="row">
         <div class="col offset-m10 m2 input-field  ">
             <button class="btn waves-light green waves-effect" type="button">Добавить</button>
