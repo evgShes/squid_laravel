@@ -45,21 +45,24 @@ function handlerAllErrros(jqXHR) {
             handlerErrors(data);
         }
     } else if (jqXHR.status == 401) {
-        noty({
+       let noty_mes = noty({
             type: 'error',
             text: 'Ошибка авторизации!',
-            layout: 'center',
-            modal: true,
-            buttons: [
-                {
-                    addClass: 'btn btn-success',
-                    text: 'Авторизоваться',
-                    onClick: function ($noty) {
-                        location.reload();
-                    }
-                }
-            ],
+            layout: 'topRight',
+            // modal: true,
+            // buttons: [
+            //     {
+            //         addClass: 'btn btn-sm btn-success',
+            //         text: 'Авторизоваться',
+            //         onClick: function ($noty) {
+            //             location.reload();
+            //         }
+            //     }
+            // ],
         });
+       setTimeout(function () {
+           noty_mes.close()
+       },3000);
     } else {
         alert("Ошибка отправки формы!");
     }
@@ -73,3 +76,11 @@ function simplePostAjax(url, data_form, callback) {
         handlerAllErrros(jqXHR);
     });
 }
+
+jQuery(function ($) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-Token': window.Laravel.csrfToken,
+        },
+    });
+});

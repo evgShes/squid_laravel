@@ -14,7 +14,7 @@ class CreateUsersListsTable extends Migration
     public function up()
     {
         Schema::create('users_lists', function (Blueprint $table) {
-            $table->bigInteger('id');
+            $table->bigIncrements('id');
             $table->text('employer_name')->nullable();
             $table->text('employer_ip')->nullable();
             $table->text('employer_department')->nullable();

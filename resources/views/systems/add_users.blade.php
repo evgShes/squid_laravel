@@ -49,7 +49,7 @@
 
     <div class="row">
         <div class="col offset-m10 m2 input-field  ">
-            <button class="btn waves-light green waves-effect" type="button" id="add_users" data-url="#">Добавить</button>
+            <button class="btn waves-light green waves-effect" type="button" id="add_users" data-url="{{ route('user.save') }}">Добавить</button>
         </div>
     </div>
 

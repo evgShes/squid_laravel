@@ -10,8 +10,8 @@ jQuery(function($){
             success: function(){
                 Materialize.toast('Успешно', 3000, 'green darken-4 rounded');
             },
-            error: function(){
-                Materialize.toast('Действие не выполнено', 3000,'rounded red accent-4');
+            error: function(jqXHR){
+                handlerAllErrros(jqXHR);
             }
         });
     });

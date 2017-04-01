@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Title</title>
     <!--<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
 
@@ -10,7 +13,12 @@
     <link href="{{ asset('query/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
-
+    <!-- Scripts -->
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
 
 </head>
 <body>
@@ -25,7 +33,7 @@
             <a href="#" class="brand-logo center">Система распределения сетевыми ресурасами
                 ЕРЦ ЛНР</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">perm_identity</i>@if(Auth::check()) Auth::user()->login @endif<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">perm_identity</i>@if(Auth::check()) {{ Auth::user()->login  }}@endif<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </div>
     </nav>
@@ -37,7 +45,9 @@
                 <li>
                     <div class="collapsible-header"><i class="material-icons">recent_actors</i>Пользователи</div>
                     <div class="collapsible-body">
-
+                        <div class="collection">
+                            <a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>
+                        </div>
                     </div>
                 </li>
                 <li>

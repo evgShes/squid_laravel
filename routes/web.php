@@ -14,21 +14,28 @@
 Route::get('/', "SquidController@mainFunc");
 
 Auth::routes();
-Route::get('logout',[
-    'as'=>'logout',
-    'uses'=>'Auth\LoginController@logout'
+Route::get('logout', [
+    'as' => 'logout',
+    'uses' => 'Auth\LoginController@logout'
 ]);
-Route::get('/{name?}', function($name)
-{
-//    $url = url('report');
-    return view($name);
-});
+
+Route::get('v/{name?}', [
+    'as' => 'view',
+    function ($name) {
+        return view($name);
+    }
+]);
+
 Route::get('/home', 'HomeController@index');
 
 
-
-Route::group(['middleware'=>'auth'],function (){
-    Route::get('view',function (){
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('view', function () {
         return view('control_panel.settings');
     });
+
+    Route::post('user/save', [
+        'as' => 'user.save',
+        'uses' => 'UsersController@saveEmployer'
+    ]);
 });
