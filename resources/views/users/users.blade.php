@@ -1,6 +1,21 @@
 @extends("layouts.default")
 @section('content')
+    <div class="row">
+        <div class="col m4 ">
+            <select name="" id="">
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+            </select>
+            <label></label>
+        </div>
+        <div class="col m4">
 
+        </div>
+        <div class="col m4">
+
+        </div>
+    </div>
     <div class="row">
     <div class="col m12">
         <table class="bordered highlight responsive-table">

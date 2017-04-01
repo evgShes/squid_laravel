@@ -26,6 +26,7 @@
                 <option value="1">Годовой</option>
                 <option value="2">Месячный</option>
                 <option value="3">Ежедневный</option>
+                <option value="4">Другое</option>
             </select>
             <label>Тип отчета:</label>
         </div>

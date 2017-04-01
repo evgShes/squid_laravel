@@ -1,10 +1,10 @@
 jQuery(function($){
     $('#type_report').on('change',function(){
-        if($(this).val()=='3'){
-            $('#date_from,#date_to').prop('disabled',true).val('');
+        if($(this).val()=='4'){
+            $('#date_from,#date_to').prop('disabled',false);
         }
         else{
-            $('#date_from,#date_to').prop('disabled',false);
+            $('#date_from,#date_to').prop('disabled',true).val('');
         }
     });
     $('#generate_report').on('click',function(){
