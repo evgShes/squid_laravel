@@ -7,11 +7,17 @@ jQuery(function($){
             type: "POST",
             url: url,
             data: data_form,
+            beforeSend:function () {
+                $('#modal_load').show();
+            },
             success: function(){
+                $('#modal_load').hide();
                 Materialize.toast('Успешно', 3000, 'green darken-4 rounded');
             },
-            error: function(jqXHR){
+            error: function(){
+                $('#modal_load').hide();
                 handlerAllErrros(jqXHR);
+
             }
         });
     });
