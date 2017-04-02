@@ -47,4 +47,23 @@ jQuery(function($){
             }
         });
     });
+
+    $('#button_add_modal_add_site').on('click', function () {
+        let button = $(this),
+        url = button.data('url'),
+        data_val = $('#create-site :input').serialize(),
+        form = new FormData(data_val);
+        console.log(form);
+        $.ajax({
+            url: url,
+            type:'post',
+            data: form,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+            }
+        });
+        // simplePostAjax(url);
+    });
 });

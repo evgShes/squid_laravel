@@ -38,4 +38,10 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'user.save',
         'uses' => 'UsersController@saveEmployer'
     ]);
+
+//     Добавление сайтов
+    Route::post('add/save',[
+        'as'=>'add.save',
+        'uses'=>'SiteController@create'
+    ]);
 });
