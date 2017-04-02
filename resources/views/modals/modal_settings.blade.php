@@ -2,17 +2,17 @@
     <div class="modal-content" id="create-site">
         <h4 class="center-align">Добавление нового сайта</h4>
         <div class="row">
-            <div class="col m12 input-field"><input type="text" id="name_site" name="site_name"><label for="name_site">Название сайта:</label></div>
+            <div class="col m12 input-field"><input type="text" id="name_site" name="name"><label for="name_site">Название сайта:</label></div>
         </div>
         <div class="row">
-            <div class="col m12 input-field"><input type="text" id="link_site" name="site_link"><label for="link_site">Домен сайта:</label></div>
+            <div class="col m12 input-field"><input type="text" id="link_site" name="domain"><label for="link_site">Домен сайта:</label></div>
         </div>
         <div class="row">
             <div class="col m12">
                 <div class="file-field input-field">
                     <div class="btn">
                         <span>Выбирите файл:</span>
-                        <input type="file"  name="site_file">
+                        <input type="file"  name="site_file" id="file-inp">
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text" name="site_file_name">

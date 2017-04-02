@@ -1,6 +1,6 @@
 function handlerErrors(errors) {
     $('.handler_errors').remove();
-    if (!empty(errors)) {
+    if (errors != undefined) {
         $.each(errors, function (key, val) {
             var list = $('<span>').addClass('help-block handler_errors').css('color', 'red');
             if (typeof (val) == 'object') {
