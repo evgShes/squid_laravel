@@ -25,7 +25,7 @@ class SiteRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'domain'=>'active_url'
+            'domain'=>'active_url|unique:sites,domain'
         ];
     }
 }
