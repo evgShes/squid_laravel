@@ -12,10 +12,10 @@
                 <div class="file-field input-field">
                     <div class="btn">
                         <span>Выбирите файл:</span>
-                        <input type="file">
+                        <input type="file"  name="site_file">
                     </div>
                     <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" name="site_file">
+                        <input class="file-path validate" type="text" name="site_file_name">
                     </div>
                 </div>
             </div>
