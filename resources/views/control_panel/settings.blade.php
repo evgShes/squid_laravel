@@ -11,7 +11,7 @@
         <div class="col m2">
             <input type="hidden" value="https://vk.com/">
             <input class="" name="group1" type="checkbox" id="vk"/>
-            <label for="vk"><div class="sprite_vk"><span>&nbsp;ВКонтакте</span></div></label>
+            <label for="vk"><div class="sprite_vk"><span>&nbsp ВКонтакте</span></div></label>
         </div>
         <div class="col m2">
             <input type="hidden" value="https://ok.ru">
@@ -47,7 +47,7 @@
         <div class="col m2 offset-m8">
             <button class="btn waves-light spinner-green waves-effect" type="button" data-target="modal_add_site">Добавить сайт</button>
         </div>
-        <div class="col  m2">
+        <div class="col m2">
             <a class="btn waves-light green waves-effect" type="button">Сохранить изменения</a>
         </div>
     </div>
