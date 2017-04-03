@@ -11,7 +11,7 @@
         <div class="col m2">
             <input type="hidden" value="https://vk.com/">
             <input class="" name="group1" type="checkbox" id="vk"/>
-            <label for="vk"><div class="sprite_vk"><span>&nbsp ВКонтакте</span></div></label>
+            <label for="vk"><div class="sprite_vk"><span>ВКонтакте</span></div></label>
         </div>
         <div class="col m2">
             <input type="hidden" value="https://ok.ru">
@@ -35,6 +35,38 @@
             <input class="" name="group1" type="checkbox" id="inst"/>
             <label for="inst">
                 <div class="sprite_inst"><span>Instagram</span></div></label>
+        </div>
+        <div class="col m2">
+            <input type="hidden" value="https://www.youtube.com">
+            <input class="" name="group1" type="checkbox" id="you"/>
+            <label for="you">
+                <div class="sprite_you"><span>Youtube</span></div></label>
+        </div>
+        @if(isset($sites))
+        @foreach($sites as $site)
+               <?php
+                $file = $site->relFiles;
+                $file_path = (empty($file))? '' :asset($file->path);
+               ?>
+                <div class="col m2">
+                    <input type="hidden" value="{{ $site->domain or '' }}" name="domain">
+                    <input class="" name="group1" type="checkbox" id="site_{{ $site->id or '' }}"/>
+                    <label for="site_{{ $site->id or '' }}">
+                        <div class=""><img src="{{ $file_path }}" alt=""><span>{{ $site->name or '' }}</span></div></label>
+                </div>
+            @endforeach
+        @endif
+        <div class="col m2">
+            <input type="hidden" value="https://www.youtube.com">
+            <input class="" name="group1" type="checkbox" id="you"/>
+            <label for="you">
+                <div class="sprite_you"><span>Youtube</span></div></label>
+        </div>
+        <div class="col m2">
+            <input type="hidden" value="https://www.youtube.com">
+            <input class="" name="group1" type="checkbox" id="you"/>
+            <label for="you">
+                <div class="sprite_you"><span>Youtube</span></div></label>
         </div>
         <div class="col m2">
             <input type="hidden" value="https://www.youtube.com">

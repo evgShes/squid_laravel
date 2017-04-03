@@ -65,7 +65,7 @@
                     <div class="collapsible-body">
                         <div class="collection">
                             <a href="#!" class="collection-item">Статистика</a>
-                            <a href="{{ route('view','control_panel.settings') }}" class="collection-item">Настройки</a>
+                            <a href="{{ route('site.view') }}" class="collection-item">Настройки</a>
                             <a href="{{ route('view','control_panel.report') }}" class="collection-item">Отчеты</a>
 
                         </div>

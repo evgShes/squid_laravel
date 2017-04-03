@@ -23,6 +23,6 @@
     </div>
     <div class="modal-footer">
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat left red lighten-1">Закрыть</a>
-        <a href="#!" class=" modal-action waves-effect waves-green btn-flat green" id="button_add_modal_add_site" data-url="{{ route('add.save') }}">Добавить</a>
+        <a href="#!" class=" modal-action waves-effect waves-green btn-flat green" id="button_add_modal_add_site" data-url="{{ route('site.create') }}">Добавить</a>
     </div>
 </div>

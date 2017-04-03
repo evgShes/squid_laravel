@@ -24,8 +24,9 @@ class SiteRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'domain'=>'active_url|unique:sites,domain'
+//            'name'=>'required',
+//            'domain'=>'active_url|unique:sites,domain',
+//            'site_file'=>'size:500'
         ];
     }
 }
