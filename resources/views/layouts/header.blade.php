@@ -12,6 +12,7 @@
     <link href="{{ asset('materialize/fonts/icon.css') }}" rel="stylesheet">
     <link href="{{ asset('query/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/squid.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
