@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="block-sites">
         {{--<div class="col m2">--}}
             {{--<input type="hidden" value="https://vk.com/">--}}
             {{--<input class="" name="group1" type="checkbox" id="vk"/>--}}
@@ -62,7 +62,7 @@
             <button class="btn waves-light spinner-green waves-effect" type="button" data-target="modal_add_site">Добавить сайт</button>
         </div>
         <div class="col m2">
-            <a class="btn waves-light green waves-effect" type="button">Сохранить изменения</a>
+            <button class="btn waves-light green waves-effect" type="button" id="btn-block-site" data-url = "">Сохранить изменения</button>
         </div>
     </div>
     @include('modals.modal_settings')

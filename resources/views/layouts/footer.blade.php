@@ -54,5 +54,6 @@
 <script src="{{ asset('js/main.js') }}"></script>
 <script src="{{ asset('js/add_users.js') }}"></script>
 <script src="{{ asset('js/control_panel.js') }}"></script>
+<script src="{{ asset('js/sites.js') }}"></script>
 </body>
 </html>

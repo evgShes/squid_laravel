@@ -76,7 +76,17 @@ function simplePostAjax(url, data_form, callback) {
         handlerAllErrros(jqXHR);
     });
 }
-
+function notyBotRight(extends_val) {
+    let default_value = $.extend({
+            type: 'success',
+            text: 'Сохранено',
+            layout: 'bottomRight',
+        }, extends_val),
+        noty_mess = noty(default_value);
+    setTimeout(function () {
+        noty_mess.close();
+    }, 3000);
+}
 jQuery(function ($) {
     $.ajaxSetup({
         headers: {
