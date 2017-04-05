@@ -26,7 +26,7 @@ class SiteRequest extends FormRequest
         return [
 //            'name'=>'required',
 //            'domain'=>'active_url|unique:sites,domain',
-//            'site_file'=>'size:500'
+//            'site_file'=>'size:10'
         ];
     }
 }

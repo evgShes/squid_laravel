@@ -51,6 +51,12 @@ Route::group(['middleware' => 'auth'], function () {
             'as'=>'site.view',
             'uses'=>'SiteController@view'
         ]);
+
+        // Блокировака сайта
+        Route::post('block',[
+            'as'=>'site.block',
+            'uses'=>'SiteController@block'
+        ]);
     });
 
 

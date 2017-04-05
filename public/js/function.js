@@ -76,6 +76,14 @@ function simplePostAjax(url, data_form, callback) {
         handlerAllErrros(jqXHR);
     });
 }
+
+// Обновление блока
+$.fn.loadBlock = function (data = '') {
+    let selector = this.attr('id');
+    let $parent = this.parent();
+    $parent.load(` #${selector}`, data);
+};
+
 function notyBotRight(extends_val) {
     let default_value = $.extend({
             type: 'success',

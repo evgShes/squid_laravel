@@ -20,4 +20,14 @@ class Site extends Model
     {
         return $this->morphOne(File::class,'files', 'rel_type', 'rel_id');
     }
+
+    public function scopeBlocked($query)
+    {
+        return $query->where('status',true);
+    }
+
+    public function scopeUnlocked($query)
+    {
+        return $query->where('status',true)->whereNull('status');
+    }
 }
