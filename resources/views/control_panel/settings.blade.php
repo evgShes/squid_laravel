@@ -49,9 +49,9 @@
                     $file = $site->relFiles;
                     $file_path = (empty($file))? asset('img/default_site.png') :asset($file->path);
                     ?>
-                    <div class="col m2">
+                    <div class="col m3">
                         <input type="hidden" value="{{ $site->domain or '' }}">
-                        <input class="" name="blocked_sites[]" type="checkbox" value="{{ $site->id or '' }}" id="site_{{ $site->id or '' }}"/>
+                        <input class="" name="blocked_sites[]" type="checkbox" value="{{ $site->id or '' }}" id="site_{{ $site->id or '' }}" @if($site->status) checked @endif/>
                         <label for="site_{{ $site->id or '' }}">
                             <div class=""><img src="{{ $file_path }}" alt="" class="img-logo-site"><span class="title-logo-site">{{ $site->name or '' }}</span></div></label>
                     </div>

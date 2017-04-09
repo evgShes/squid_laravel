@@ -17,6 +17,9 @@ class CreateSitesTable extends Migration
             $table->bigIncrements('id');
             $table->text('name')->nullable();
             $table->text('domain')->nullable();
+            $table->text('scheme')->nullable();
+            $table->text('host')->nullable();
+            $table->text('path')->nullable();
             $table->boolean('status')->nullable()->default(false);
             $table->softDeletes();
             $table->timestamps();

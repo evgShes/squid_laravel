@@ -33,7 +33,16 @@ jQuery(function ($) {
             input = $('#block-sites :input').serialize();
         simplePostAjax(url,input, function (data) {
            if(data == true){
-               notyBotRight();
+               notyBotRight({
+                   text:'Настройки вступят в силу через несколько минут.'
+               });
+                $.post('/squid/restart',function (data) {
+                    if (data){
+                        notyBotRight({
+                            text:'Настройки вступили в силу.'
+                        })
+                    }
+                });
            }
         });
     });

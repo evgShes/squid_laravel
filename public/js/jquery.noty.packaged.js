@@ -2,7 +2,7 @@ jQuery(function ($) {
     $.extend($.noty.defaults,{
         progressBar: true,
         closeWith:['click', 'button'],
-        maxVisible: 1
+        maxVisible: 2
     })
 });
 

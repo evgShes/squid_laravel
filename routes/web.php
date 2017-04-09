@@ -59,6 +59,9 @@ Route::group(['middleware' => 'auth'], function () {
         ]);
     });
 
+    Route::group(['prefix'=>'squid'],function (){
+        Route::post('restart',"SquidController@squidRestart");
+    });
 
 
 });
