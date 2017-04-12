@@ -29,7 +29,7 @@
         <li><a href="#!">Смена пароля</a></li>
         <li><a href="{{ route('logout') }}">Выход</a></li>
     </ul>
-    <nav class="lime darken-3" style="background-image: url({{asset('img/head_img.jpg')}});background-position: center">
+    <nav class="lime darken-3" style="background-image: url({{asset('img/head_img.jpg')}});background-size:100%;">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo center">Система распределения сетевыми ресурасами
                 ЕРЦ ЛНР</a>
