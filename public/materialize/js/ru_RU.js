@@ -15,6 +15,6 @@ jQuery.extend( jQuery.fn.pickadate.defaults, {
     weekdaysLetter:[ 'В', 'П', 'В', 'С', 'Ч', 'П', 'С' ]
 });
 
-jQuery.extend( jQuery.fn.pickatime.defaults, {
-    clear: 'очистить'
-});
+// jQuery.extend( jQuery.fn.pickatime.defaults, {
+//     clear: 'очистить'
+// });
