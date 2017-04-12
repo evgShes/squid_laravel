@@ -29,7 +29,7 @@
         <li><a href="#!">Смена пароля</a></li>
         <li><a href="{{ route('logout') }}">Выход</a></li>
     </ul>
-    <nav class="indigo darken-3">
+    <nav class="lime darken-3" style="background-image: url({{asset('img/head_img.jpg')}});background-size:100%;">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo center">Система распределения сетевыми ресурасами
                 ЕРЦ ЛНР</a>
@@ -42,35 +42,80 @@
 <div class="parallax-container">
     <div class="row">
         <div class="col s2">
-            <ul class="collapsible popout" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">recent_actors</i>Пользователи</div>
-                    <div class="collapsible-body">
-                        <div class="collection">
-                            <a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>
-                            <a href="{{ route('view','users.users') }}" class="collection-item">Пользователи</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">settings_applications</i>Система</div>
-                    <div class="collapsible-body">
-                        <div class="collection">
-                            <a href="#!" class="collection-item">Поиск</a>
-                            <a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">view_module</i>Панель управления</div>
-                    <div class="collapsible-body">
-                        <div class="collection">
-                            <a href="#!" class="collection-item">Статистика</a>
-                            <a href="{{ route('site.view') }}" class="collection-item">Настройки</a>
-                            <a href="{{ route('view','control_panel.report') }}" class="collection-item">Отчеты</a>
+            {{--<ul class="collapsible popout" data-collapsible="accordion">--}}
+                {{--<li>--}}
+                    {{--<div class="collapsible-header"><i class="material-icons">recent_actors</i>Пользователи</div>--}}
+                    {{--<div class="collapsible-body">--}}
+                        {{--<div class="collection">--}}
+                            {{--<a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>--}}
+                            {{--<a href="{{ route('view','users.users') }}" class="collection-item">Пользователи</a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<div class="collapsible-header"><i class="material-icons">settings_applications</i>Система</div>--}}
+                    {{--<div class="collapsible-body">--}}
+                        {{--<div class="collection">--}}
+                            {{--<a href="#!" class="collection-item">Поиск</a>--}}
+                            {{--<a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<div class="collapsible-header"><i class="material-icons">view_module</i>Панель управления</div>--}}
+                    {{--<div class="collapsible-body">--}}
+                        {{--<div class="collection">--}}
+                            {{--<a href="#!" class="collection-item">Статистика</a>--}}
+                            {{--<a href="{{ route('site.view') }}" class="collection-item">Настройки</a>--}}
+                            {{--<a href="{{ route('view','control_panel.report') }}" class="collection-item">Отчеты</a>--}}
 
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
+            {{--</ul>--}}
+
+            <ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0%);">
+
+                <li><div class="userView">
+                        <div class="background">
+                            <img src="{{asset('img/head_img.jpg')}}">
                         </div>
-                    </div>
+                        <a href=""><i class="material-icons left">perm_identity</i></a>
+                        <a href=""><span class="white-text name">@if(Auth::check()) {{ Auth::user()->login  }}@endif</span></a>
+                        <a href=""><span class="white-text email">@if(Auth::check()) {{ Auth::user()->email  }}@endif</span></a>
+                    </div></li>
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li class="bold"><a class="collapsible-header  waves-effect waves-teal"><i class="material-icons">recent_actors</i>Пользователи</a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li>
+                                        <a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('view','users.users') }}" class="collection-item">Пользователи</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bold"><a class="collapsible-header  waves-effect waves-teal"><i class="material-icons">settings_applications</i>Система</a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="#!" class="collection-item">Поиск</a></li>
+                                    <li><a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">view_module</i>Панель управления</a>
+                            <div class="collapsible-body" style="">
+                                <ul>
+                                    <li><a href="#!" class="collection-item">Статистика</a></li>
+                                    <li><a href="{{ route('site.view') }}" class="collection-item">Настройки</a></li>
+                                    <li><a href="{{ route('view','control_panel.report') }}" class="collection-item">Отчеты</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
                 </li>
             </ul>
             <!--<ul id="slide-out" class="side-nav fixed">-->
