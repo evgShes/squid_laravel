@@ -15,4 +15,25 @@ class UsersList extends Model
         'employer_email',
         'employer_phone',
     ];
+
+    protected $department = [
+        1 => 'Отдел кадров',
+        'Отдел тестирования',
+        'Отдел разработки',
+        'Транспортный отдел',
+        'Финансово-бухгалтерский отдел',
+        'Отдел маркентинга',
+        'Хозяйственный отдел',
+        'Юрисконсульт',
+    ];
+
+    /**
+     * @return array
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
+
 }

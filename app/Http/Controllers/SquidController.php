@@ -148,4 +148,14 @@ http_access deny deny_rules
             }
         }
     }
+
+
+    public function viewSquidLog()
+    {
+        $records = Squid::with('relUser')->paginate(15);
+        $data = [
+            'records' => $records
+        ];
+        return view('users.users', $data);
+    }
 }
