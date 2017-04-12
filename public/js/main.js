@@ -23,6 +23,41 @@ jQuery(function ($) {
         //labelMonthSelect: 'Выбрать месяц',
         //labelYearSelect: 'Выбрать год',
     });
+    // ----------------------------------------------валидация
+    // $("#modal_add_site").validate({
+    //     rules: {
+    //         name: {
+    //             required: true,
+    //             minlength: 5
+    //         },
+    //         domain: {
+    //             required: true,
+    //             minlength: 5
+    //         }
+    //     },
+    //     //For custom messages
+    //     messages: {
+    //         name:{
+    //             required: "Поле обязательно для заполнения",
+    //             minlength: "Введите больше 5 символов"
+    //         },
+    //         domain:{
+    //             required:  "Поле обязательно для заполнения",
+    //             minlength: "Введите больше 5 символов"
+    //         },
+    //
+    //     },
+    //     errorElement : 'div',
+    //     errorPlacement: function(error, element) {
+    //         var placement = $(element).data('error');
+    //         if (placement) {
+    //             $(placement).append(error)
+    //         } else {
+    //             error.insertAfter(element);
+    //         }
+    //     }
+    // });
+
     //$('.modal_sm').modal({
     //    dismissible: true, // Modal can be dismissed by clicking outside of the modal
     //    opacity: .5, // Opacity of modal background

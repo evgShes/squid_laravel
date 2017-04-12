@@ -2,10 +2,16 @@
     <div class="modal-content" id="create-site">
         <h4 class="center-align">Добавление нового сайта</h4>
         <div class="row">
-            <div class="col m12 input-field"><input type="text" id="name_site" name="name"><label for="name_site">Название сайта:</label></div>
+            <div class="col m12 input-field">
+                <input type="text" id="name_site" class="validate" name="name" required minlength="5">
+                <label for="name_site" data-error="Минимальное количество символов - 5">Название сайта:</label>
+            </div>
         </div>
         <div class="row">
-            <div class="col m12 input-field"><input type="text" id="link_site" name="domain"><label for="link_site">Домен сайта:</label></div>
+            <div class="col m12 input-field">
+                <input type="text" id="link_site" class="validate" name="domain" required minlength="5">
+                <label for="link_site"  data-error="Минимальное количество символов - 5">Домен сайта:</label>
+            </div>
         </div>
         <div class="row">
             <div class="col m12">
@@ -23,6 +29,6 @@
     </div>
     <div class="modal-footer">
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat left red lighten-1">Закрыть</a>
-        <a href="#!" class=" modal-action waves-effect waves-green btn-flat green" id="button_add_modal_add_site" data-url="{{ route('site.create') }}">Добавить</a>
+        <a href="#!" disabled="" class=" modal-action waves-effect waves-green btn-flat green button_submit" id="button_add_modal_add_site" data-url="{{ route('site.create') }}">Добавить</a>
     </div>
 </div>
