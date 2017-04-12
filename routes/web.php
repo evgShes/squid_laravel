@@ -60,6 +60,12 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix'=>'squid'],function (){
+
+        Route::get('view', [
+            'as' => 'squid.view',
+            'uses' => 'SquidController@viewSquidLog'
+        ]);
+
         Route::post('restart',"SquidController@squidRestart");
     });
 
