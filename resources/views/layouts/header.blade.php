@@ -26,7 +26,7 @@
 
 <header>
     <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">Смена пароля</a></li>
+        <li class="buttonshow" data-activates="slide-out"><a href="#!">Смена пароля</a></li>
         <li><a href="{{ route('logout') }}">Выход</a></li>
     </ul>
     <nav class="lime darken-3" style="background-image: url({{asset('img/head_img.jpg')}});background-size:100%;">
@@ -39,9 +39,9 @@
         </div>
     </nav>
 </header>
-<div class="parallax-container">
+<div class="container">
     <div class="row">
-        <div class="col s2">
+        {{--<div class="col s2">--}}
             {{--<ul class="collapsible popout" data-collapsible="accordion">--}}
                 {{--<li>--}}
                     {{--<div class="collapsible-header"><i class="material-icons">recent_actors</i>Пользователи</div>--}}
@@ -74,7 +74,7 @@
                 {{--</li>--}}
             {{--</ul>--}}
 
-            <ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0%);">
+            <ul id="slide-out" class="side-nav fixed">
 
                 <li><div class="userView">
                         <div class="background">
@@ -133,6 +133,6 @@
             <!--<li><a class="subheader">Subheader</a></li>-->
             <!--<li><a class="waves-effect" href="#!">Third Link With Waves</a></li>-->
             <!--</ul>-->
-        </div>
-        <div class="col s10" style="margin-top:20px;">
+        {{--</div>--}}
+        <div class="col s12" style="margin-top:20px;">
             <h4 class="truncate center-align">Отчет</h4>
