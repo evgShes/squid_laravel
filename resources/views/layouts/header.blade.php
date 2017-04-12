@@ -25,16 +25,16 @@
 <body>
 
 <header>
-    <ul id="dropdown1" class="dropdown-content">
-        <li class="buttonshow" data-activates="slide-out"><a href="#!">Смена пароля</a></li>
+    <ul id="dropdown1" class="dropdown-content" data-activates="dropdown1">
+        <li><a href="#!">Смена пароля</a></li>
         <li><a href="{{ route('logout') }}">Выход</a></li>
     </ul>
     <nav class="lime darken-3" style="background-image: url({{asset('img/head_img.jpg')}});background-size:100%;">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo center">Система распределения сетевыми ресурасами
                 ЕРЦ ЛНР</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">perm_identity</i>@if(Auth::check()) {{ Auth::user()->login  }}@endif<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul id="nav-mobile" class="left">
+                <li class="menu_side_nav"><a href=""><i class="material-icons left">reorder</i></a></li>
             </ul>
         </div>
     </nav>
@@ -74,13 +74,13 @@
                 {{--</li>--}}
             {{--</ul>--}}
 
-            <ul id="slide-out" class="side-nav fixed">
+            <ul id="slide-out" class="side-nav">
 
                 <li><div class="userView">
                         <div class="background">
                             <img src="{{asset('img/head_img.jpg')}}">
                         </div>
-                        <a href=""><i class="material-icons left">perm_identity</i></a>
+                        <a href="" class="buttonshow" data-activates="slide-out"><i class="material-icons left">perm_identity</i></a>
                         <a href=""><span class="white-text name">@if(Auth::check()) {{ Auth::user()->login  }}@endif</span></a>
                         <a href=""><span class="white-text email">@if(Auth::check()) {{ Auth::user()->email  }}@endif</span></a>
                     </div></li>
