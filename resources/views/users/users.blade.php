@@ -30,69 +30,30 @@
                 <th>Ф.И.О. сотружника</th>
                 <th>Отдел</th>
                 <th>Дата и время</th>
+                <th>Тип соединения</th>
                 <th>Сайт</th>
                 <th>Количество трафика</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Феденко Кристина Юрьевна</td>
-                <td>Отдел разработки</td>
-                <td>15.02.2017 14:52</td>
-                <td>vk.com</td>
-                <td>520 Мб</td>
-            </tr>
-            <tr>
-                <td>Феденко Кристина Юрьевна</td>
-                <td>Отдел разработки</td>
-                <td>15.02.2017 14:52</td>
-                <td>vk.com</td>
-                <td>520 Мб</td>
-            </tr>
-            <tr>
-                <td>Феденко Кристина Юрьевна</td>
-                <td>Отдел разработки</td>
-                <td>15.02.2017 14:52</td>
-                <td>vk.com</td>
-                <td>520 Мб</td>
-            </tr>
-            <tr>
-                <td>Феденко Кристина Юрьевна</td>
-                <td>Отдел разработки</td>
-                <td>15.02.2017 14:52</td>
-                <td>vk.com</td>
-                <td>520 Мб</td>
-            </tr>
-            <tr>
-                <td>Феденко Кристина Юрьевна</td>
-                <td>Отдел разработки</td>
-                <td>15.02.2017 14:52</td>
-                <td>vk.com</td>
-                <td>520 Мб</td>
-            </tr>
-            <tr>
-                <td>Феденко Кристина Юрьевна</td>
-                <td>Отдел разработки</td>
-                <td>15.02.2017 14:52</td>
-                <td>vk.com</td>
-                <td>520 Мб</td>
-            </tr>
-            <tr>
-                <td>Феденко Кристина Юрьевна</td>
-                <td>Отдел разработки</td>
-                <td>15.02.2017 14:52</td>
-                <td>vk.com</td>
-                <td>520 Мб</td>
-            </tr>
-            <tr>
-                <td>Феденко Кристина Юрьевна</td>
-                <td>Отдел разработки</td>
-                <td>15.02.2017 14:52</td>
-                <td>vk.com</td>
-                <td>520 Мб</td>
-            </tr>
+
+            @foreach($records as $record)
+                <?php
+                $user_data = $record->relUser;
+                ?>
+                <tr>
+                    <td>{{ $user_data->employer_name or ''}}</td>
+                    <td>@if(!empty($user_data->employer_department)) {{ $user_data->getDepartment()[$user_data->employer_department] }} @endif</td>
+                    <td>{{ $record->time_convert or ''}}</td>
+                    <td>{{ $record->request_method or '' }}</td>
+                    <td>{{ $record->url or '' }}</td>
+                    <td>@if(!empty(mb_strimwidth ($record->bytes / 1024,0, 4))){{ mb_strimwidth($record->bytes / 1024,0, 4) }}
+                        мб@endif</td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
+        {{ $records->links() }}
     </div>
 </div>
 @stop
