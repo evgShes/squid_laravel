@@ -5,7 +5,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Title</title>
+    <title>{{ $view_title or '' }}</title>
     <!--<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
 
     <link href="{{ asset('materialize/css/materialize.css') }}" rel="stylesheet">
@@ -136,4 +136,5 @@
             <!--</ul>-->
         </div>
         <div class="col s10" style="margin-top:20px;">
-            <h4 class="truncate center-align">Отчет</h4>
+            {{--            {{ dd(get_defined_vars()) }}--}}
+            <h4 class="truncate center-align">{{ $view_title or '' }}</h4>
