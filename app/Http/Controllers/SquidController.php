@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Squid;
+use App\User;
+use App\UsersList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -79,11 +81,12 @@ http_access deny deny_rules
         if (empty($array_from_log)) {
             return false;
         } else {
+            $arr_save = [];
             foreach ($array_from_log as $item) {
                 $arr_val = preg_split('/[?^\s]+/', $item);
-                $record = Squid::create([
+                $arr_save[] = [
                     'time' => $arr_val[0],
-                    'time_convert' => $arr_val[0],
+                    'time_convert' => date('Y-m-d H:i:s', $arr_val[0]),
                     'duration' => $arr_val[1],
                     'client_address' => $arr_val[2],
                     'result_codes' => $arr_val[3],
@@ -93,9 +96,13 @@ http_access deny deny_rules
                     'user' => $arr_val[7],
                     'hierarchy_code' => $arr_val[8],
                     'type' => $arr_val[9],
-                ]);
+                    'created_at' => date_create(null),
+                ];
             }
-            return true;
+            if (!empty($arr_save)) {
+                $save = Squid::insert($arr_save);
+                return $save;
+            }
         }
     }
 
@@ -150,12 +157,34 @@ http_access deny deny_rules
     }
 
 
-    public function viewSquidLog()
+    public function viewSquidLog(Request $request)
     {
-        $records = Squid::with('relUser')->paginate(15);
-        $data = [
-            'records' => $records
-        ];
+//        dd($request->all());
+        $data = [];
+        $records = Squid::with('relUser');
+        if ($request->search) {
+            if ($request->has('all_employer')) {
+                $id_user = $request->all_employer;
+                $user = UsersList::find($id_user);
+                if ($user) {
+                    $user_ip = $user->employer_ip;
+                    $records->where('client_address', $user_ip);
+                    $data['users'] = $user_ip;
+                }
+            }
+
+            if ($request->has('all_date_from_submit') && $request->has('all_date_to_submit')) {
+                $date_from = date_create($request->all_date_from_submit)->format('Y.m.d') . ' 00:00:00';
+                $date_to = date_create($request->all_date_to_submit)->format('Y.m.d') . ' 23:59:59';
+                $records->whereBetween('time_convert', [$date_from, $date_to]);
+            }
+
+        }
+        $records = $records->paginate(15);
+        $data = array_merge($data, [
+            'records' => $records,
+            'users' => UsersList::all(),
+        ]);
         return view('users.users', $data);
     }
 }

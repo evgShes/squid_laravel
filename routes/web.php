@@ -61,7 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix'=>'squid'],function (){
 
-        Route::get('view', [
+        Route::match(['get', 'post'], 'view', [
             'as' => 'squid.view',
             'uses' => 'SquidController@viewSquidLog'
         ]);
