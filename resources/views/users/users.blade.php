@@ -4,10 +4,12 @@
         {{ csrf_field() }}
         <div class="row">
             <div class="col m4 input-field">
-                <select multiple name="all_employer">
+                {{--{{ dd($user_id) }}--}}
+                <select multiple name="all_employer[]">
                     <option value="" disabled>Выберите пользователя</option>
                     @foreach($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->employer_name or '' }}</option>
+                        <option value="{{ $user->id }}"
+                                @if(isset($user_id) && in_array($user->id, $user_id)) selected @endif>{{ $user->employer_name or '' }}</option>
                     @endforeach
                 </select>
                 <label>Пользователь:</label>
@@ -31,11 +33,11 @@
         <table class="bordered highlight responsive-table">
             <thead>
             <tr>
-                <th>Ф.И.О. сотружника</th>
+                <th>Ф.И.О/ ИП адрес</th>
                 <th>Отдел</th>
                 <th>Дата и время</th>
                 <th>Тип соединения</th>
-                <th>Сайт</th>
+                <th>Адрес/порт</th>
                 <th>Количество трафика</th>
             </tr>
             </thead>
@@ -46,13 +48,14 @@
                 $user_data = $record->relUser;
                 ?>
                 <tr>
-                    <td>{{ $user_data->employer_name or ''}}</td>
+                    <td>{{ $user_data->employer_name or $record->client_address}}</td>
                     <td>@if(!empty($user_data->employer_department)) {{ $user_data->getDepartment()[$user_data->employer_department] }} @endif</td>
                     <td>{{ $record->time_convert or ''}}</td>
                     <td>{{ $record->request_method or '' }}</td>
                     <td>{{ $record->url or '' }}</td>
-                    <td>@if(!empty(mb_strimwidth ($record->bytes / 1024,0, 4))){{ mb_strimwidth($record->bytes / 1024,0, 4) }}
-                        мб@endif</td>
+                    <td>@if(!empty(mb_strimwidth ($record->bytes / 1024,0, 4))){{ mb_strimwidth($record->bytes / 1024,0, 4) }}@else
+                            0 @endifМб
+                    </td>
                 </tr>
             @endforeach
             </tbody>

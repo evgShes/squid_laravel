@@ -3,8 +3,10 @@
 namespace App\Console;
 
 use App\Http\Controllers\SquidController;
+use App\Squid;
 use function foo\func;
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -28,10 +30,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->call(function (){
-            $squidCont = new SquidController();
-            $squidCont->parseLogs();
-        })->everyMinute();
+//        $schedule->call(function (){
+//            $squid_cont = new SquidController();
+//            $squid_cont->parseLogs();
+//        })->everyMinute();
     }
 
     /**
