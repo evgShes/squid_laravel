@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', "SquidController@mainFunc");
+Route::get('/', function () {
+    return redirect()->route('squid.view');
+});
 
 Auth::routes();
 Route::get('logout', [

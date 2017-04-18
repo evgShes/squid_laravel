@@ -11,12 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 class SquidController extends Controller
 {
-
     use FunctionTrait;
+
 
     public function mainFunc(Request $request)
     {
-
 
         dd($this->parseLogs());
         dd(Storage::disk('local')->exists('files/bKUY8gBCMrQgbnHdLlrLiYeMNLmLB7G2SMSZ6DpC.jpeg'));
@@ -57,21 +56,26 @@ http_access deny deny_rules
         $response = false;
         $file_path = $this->getPathAccessLog();
         $file = file($file_path);
-        $count_records_log = Squid::count();
-        if ($count_records_log > 0) {
-            $last_record_in_table = Squid::orderBy('id', 'desc')->first();
-            $last_line_in_log_arr = preg_grep("/$last_record_in_table->time/", $file);
-            if (!empty($last_line_in_log_arr)) {
-                $key = key($last_line_in_log_arr) + 1;
-                $slice = array_slice($file, $key);
-                if (!empty($slice)) {
-                    $save = $this->saveSquid($slice);
+        if (file_exists($file_path)) {
+            $file = file($file_path);
+            $count_records_log = Squid::count();
+            if ($count_records_log > 0) {
+                $last_record_in_table = Squid::orderBy('id', 'desc')->first();
+                $last_line_in_log_arr = preg_grep("/$last_record_in_table->time/", $file);
+                if (!empty($last_line_in_log_arr)) {
+                    $key = key($last_line_in_log_arr) + 1;
+                    $slice = array_slice($file, $key);
+                    if (!empty($slice)) {
+                        $save = $this->saveSquid($slice);
+                    }
+                    $response = true;
                 }
+            } else {
+                $save = $this->saveSquid($file);
                 $response = true;
             }
         } else {
-            $save = $this->saveSquid($file);
-            $response = true;
+            echo "No directory";
         }
         return $response;
     }
@@ -180,7 +184,7 @@ http_access deny deny_rules
             }
 
         }
-        $records = $records->paginate(15);
+        $records = $records->orderBy('id', 'desc')->paginate(15);
         $data = array_merge($data, [
             'records' => $records,
             'users' => UsersList::all(),

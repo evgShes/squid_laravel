@@ -57,7 +57,6 @@
                     <div class="collapsible-body">
                         <div class="collection">
                             <a href="#!" class="collection-item">Поиск</a>
-                            <a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>
                         </div>
                     </div>
                 </li>
