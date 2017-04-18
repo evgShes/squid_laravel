@@ -48,7 +48,7 @@
                     <div class="collapsible-body">
                         <div class="collection">
                             <a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>
-                            <a href="{{ route('squid.view') }}" class="collection-item">Пользователи</a>
+                            <a href="{{ route('squid.view') }}" class="collection-item">Логи</a>
                         </div>
                     </div>
                 </li>

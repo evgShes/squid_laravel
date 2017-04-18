@@ -85,12 +85,11 @@ http_access deny deny_rules
         if (empty($array_from_log)) {
             return false;
         } else {
-            $arr_save = [];
             foreach ($array_from_log as $item) {
                 $arr_val = preg_split('/[?^\s]+/', $item);
-                $arr_save[] = [
+                $record = Squid::create([
                     'time' => $arr_val[0],
-                    'time_convert' => date('Y-m-d H:i:s', $arr_val[0]),
+                    'time_convert' => $arr_val[0],
                     'duration' => $arr_val[1],
                     'client_address' => $arr_val[2],
                     'result_codes' => $arr_val[3],
@@ -100,13 +99,9 @@ http_access deny deny_rules
                     'user' => $arr_val[7],
                     'hierarchy_code' => $arr_val[8],
                     'type' => $arr_val[9],
-                    'created_at' => date_create(null),
-                ];
+                ]);
             }
-            if (!empty($arr_save)) {
-                $save = Squid::insert($arr_save);
-                return $save;
-            }
+            return true;
         }
     }
 
@@ -139,8 +134,8 @@ http_access deny deny_rules
                 $anchor = $this->anchor_config;
                 $position = stripos($file_content, $anchor);
                 $insert_string = substr($file_content, 0, $position) . $this->end . $acl_deny_string . $this->end . substr($file_content, $position);
-                $rule_put = File::put($acc_conf_path,$insert_string);
-                if($rule_put){
+                $rule_put = File::put($acc_conf_path, $insert_string);
+                if ($rule_put) {
                     $response = true;
                 }
             };
@@ -163,17 +158,17 @@ http_access deny deny_rules
 
     public function viewSquidLog(Request $request)
     {
-//        dd($request->all());
+        $squid_cont = new SquidController();
+        $squid_cont->parseLogs();
         $data = [];
         $records = Squid::with('relUser');
         if ($request->search) {
             if ($request->has('all_employer')) {
-                $id_user = $request->all_employer;
-                $user = UsersList::find($id_user);
-                if ($user) {
-                    $user_ip = $user->employer_ip;
-                    $records->where('client_address', $user_ip);
-                    $data['users'] = $user_ip;
+                $id_user_arr = $request->all_employer;
+                $user_ip = UsersList::whereIn('id', $id_user_arr)->pluck('employer_ip');
+                if ($user_ip) {
+                    $records->whereIn('client_address', $user_ip);
+                    $data['user_id'] = $id_user_arr;
                 }
             }
 
@@ -181,6 +176,8 @@ http_access deny deny_rules
                 $date_from = date_create($request->all_date_from_submit)->format('Y.m.d') . ' 00:00:00';
                 $date_to = date_create($request->all_date_to_submit)->format('Y.m.d') . ' 23:59:59';
                 $records->whereBetween('time_convert', [$date_from, $date_to]);
+                $data['date_from'] = $date_from;
+                $data['date_to'] = $date_to;
             }
 
         }
@@ -189,6 +186,7 @@ http_access deny deny_rules
             'records' => $records,
             'users' => UsersList::all(),
         ]);
+//        dd($data);
         return view('users.users', $data);
     }
 }

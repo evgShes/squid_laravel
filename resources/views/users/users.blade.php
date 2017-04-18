@@ -4,10 +4,12 @@
         {{ csrf_field() }}
         <div class="row">
             <div class="col m4 input-field">
-                <select multiple name="all_employer">
+                {{--{{ dd($user_id) }}--}}
+                <select multiple name="all_employer[]">
                     <option value="" disabled>Выберите пользователя</option>
                     @foreach($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->employer_name or '' }}</option>
+                        <option value="{{ $user->id }}"
+                                @if(isset($user_id) && in_array($user->id, $user_id)) selected @endif>{{ $user->employer_name or '' }}</option>
                     @endforeach
                 </select>
                 <label>Пользователь:</label>
