@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Squid;
+use App\User;
+use App\UsersList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class SquidController extends Controller
 {
-
     use FunctionTrait;
+
 
     public function mainFunc(Request $request)
     {
-
 
         dd($this->parseLogs());
         dd(Storage::disk('local')->exists('files/bKUY8gBCMrQgbnHdLlrLiYeMNLmLB7G2SMSZ6DpC.jpeg'));
@@ -55,21 +56,26 @@ http_access deny deny_rules
         $response = false;
         $file_path = $this->getPathAccessLog();
         $file = file($file_path);
-        $count_records_log = Squid::count();
-        if ($count_records_log > 0) {
-            $last_record_in_table = Squid::orderBy('id', 'desc')->first();
-            $last_line_in_log_arr = preg_grep("/$last_record_in_table->time/", $file);
-            if (!empty($last_line_in_log_arr)) {
-                $key = key($last_line_in_log_arr) + 1;
-                $slice = array_slice($file, $key);
-                if (!empty($slice)) {
-                    $save = $this->saveSquid($slice);
+        if (file_exists($file_path)) {
+            $file = file($file_path);
+            $count_records_log = Squid::count();
+            if ($count_records_log > 0) {
+                $last_record_in_table = Squid::orderBy('id', 'desc')->first();
+                $last_line_in_log_arr = preg_grep("/$last_record_in_table->time/", $file);
+                if (!empty($last_line_in_log_arr)) {
+                    $key = key($last_line_in_log_arr) + 1;
+                    $slice = array_slice($file, $key);
+                    if (!empty($slice)) {
+                        $save = $this->saveSquid($slice);
+                    }
+                    $response = true;
                 }
+            } else {
+                $save = $this->saveSquid($file);
                 $response = true;
             }
         } else {
-            $save = $this->saveSquid($file);
-            $response = true;
+            echo "No directory";
         }
         return $response;
     }
@@ -128,8 +134,8 @@ http_access deny deny_rules
                 $anchor = $this->anchor_config;
                 $position = stripos($file_content, $anchor);
                 $insert_string = substr($file_content, 0, $position) . $this->end . $acl_deny_string . $this->end . substr($file_content, $position);
-                $rule_put = File::put($acc_conf_path,$insert_string);
-                if($rule_put){
+                $rule_put = File::put($acc_conf_path, $insert_string);
+                if ($rule_put) {
                     $response = true;
                 }
             };
@@ -150,12 +156,37 @@ http_access deny deny_rules
     }
 
 
-    public function viewSquidLog()
+    public function viewSquidLog(Request $request)
     {
-        $records = Squid::with('relUser')->paginate(15);
-        $data = [
-            'records' => $records
-        ];
+        $squid_cont = new SquidController();
+        $squid_cont->parseLogs();
+        $data = [];
+        $records = Squid::with('relUser');
+        if ($request->search) {
+            if ($request->has('all_employer')) {
+                $id_user_arr = $request->all_employer;
+                $user_ip = UsersList::whereIn('id', $id_user_arr)->pluck('employer_ip');
+                if ($user_ip) {
+                    $records->whereIn('client_address', $user_ip);
+                    $data['user_id'] = $id_user_arr;
+                }
+            }
+
+            if ($request->has('all_date_from_submit') && $request->has('all_date_to_submit')) {
+                $date_from = date_create($request->all_date_from_submit)->format('Y.m.d') . ' 00:00:00';
+                $date_to = date_create($request->all_date_to_submit)->format('Y.m.d') . ' 23:59:59';
+                $records->whereBetween('time_convert', [$date_from, $date_to]);
+                $data['date_from'] = $date_from;
+                $data['date_to'] = $date_to;
+            }
+
+        }
+        $records = $records->orderBy('id', 'desc')->paginate(15);
+        $data = array_merge($data, [
+            'records' => $records,
+            'users' => UsersList::all(),
+        ]);
+//        dd($data);
         return view('users.users', $data);
     }
 }

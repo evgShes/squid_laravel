@@ -21,10 +21,13 @@ class Squid extends Model
         'type',
     ];
 
-    public function getTimeConvertAttribute($value){
+    public function getTimeConvertAttribute($value)
+    {
         return date('d.m.Y H:i:s', strtotime($value));
     }
-    public function setTimeConvertAttribute($value){
+
+    public function setTimeConvertAttribute($value)
+    {
         return $this->attributes['time_convert'] = date('Y-m-d H:i:s', $value);
     }
 
