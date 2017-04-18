@@ -42,37 +42,36 @@
 <div class="container">
     <div class="row">
         {{--<div class="col s2">--}}
-            {{--<ul class="collapsible popout" data-collapsible="accordion">--}}
-                {{--<li>--}}
-                    {{--<div class="collapsible-header"><i class="material-icons">recent_actors</i>Пользователи</div>--}}
-                    {{--<div class="collapsible-body">--}}
-                        {{--<div class="collection">--}}
-                            {{--<a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>--}}
-                            {{--<a href="{{ route('view','users.users') }}" class="collection-item">Пользователи</a>--}}
-                        {{--</div>--}}
+        {{--<ul class="collapsible popout" data-collapsible="accordion">--}}
+            {{--<li>--}}
+                {{--<div class="collapsible-header"><i class="material-icons">recent_actors</i>Пользователи</div>--}}
+                {{--<div class="collapsible-body">--}}
+                    {{--<div class="collection">--}}
+                        {{--<a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>--}}
+                        {{--<a href="{{ route('squid.view') }}" class="collection-item">Логи</a>--}}
                     {{--</div>--}}
-                {{--</li>--}}
-                {{--<li>--}}
-                    {{--<div class="collapsible-header"><i class="material-icons">settings_applications</i>Система</div>--}}
-                    {{--<div class="collapsible-body">--}}
-                        {{--<div class="collection">--}}
-                            {{--<a href="#!" class="collection-item">Поиск</a>--}}
-                            {{--<a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>--}}
-                        {{--</div>--}}
+                {{--</div>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<div class="collapsible-header"><i class="material-icons">settings_applications</i>Система</div>--}}
+                {{--<div class="collapsible-body">--}}
+                    {{--<div class="collection">--}}
+                        {{--<a href="#!" class="collection-item">Поиск</a>--}}
                     {{--</div>--}}
-                {{--</li>--}}
-                {{--<li>--}}
-                    {{--<div class="collapsible-header"><i class="material-icons">view_module</i>Панель управления</div>--}}
-                    {{--<div class="collapsible-body">--}}
-                        {{--<div class="collection">--}}
-                            {{--<a href="#!" class="collection-item">Статистика</a>--}}
-                            {{--<a href="{{ route('site.view') }}" class="collection-item">Настройки</a>--}}
-                            {{--<a href="{{ route('view','control_panel.report') }}" class="collection-item">Отчеты</a>--}}
+                {{--</div>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<div class="collapsible-header"><i class="material-icons">view_module</i>Панель управления</div>--}}
+                {{--<div class="collapsible-body">--}}
+                    {{--<div class="collection">--}}
+                        {{--<a href="#!" class="collection-item">Статистика</a>--}}
+                        {{--<a href="{{ route('site.view') }}" class="collection-item">Настройки</a>--}}
+                        {{--<a href="{{ route('view','control_panel.report') }}" class="collection-item">Отчеты</a>--}}
 
-                        {{--</div>--}}
                     {{--</div>--}}
-                {{--</li>--}}
-            {{--</ul>--}}
+                {{--</div>--}}
+            {{--</li>--}}
+        {{--</ul>--}}
 
             <ul id="slide-out" class="side-nav">
 
@@ -93,7 +92,7 @@
                                         <a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('view','users.users') }}" class="collection-item">Пользователи</a>
+                                        <a href="{{ route('squid.view') }}" class="collection-item">Пользователи</a>
                                     </li>
                                 </ul>
                             </div>
