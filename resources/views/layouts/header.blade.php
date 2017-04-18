@@ -92,7 +92,7 @@
                                         <a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('squid.view') }}" class="collection-item">Пользователи</a>
+                                        <a href="{{ route('squid.view') }}" class="collection-item">Squid-логи</a>
                                     </li>
                                 </ul>
                             </div>
@@ -101,7 +101,7 @@
                             <div class="collapsible-body">
                                 <ul>
                                     <li><a href="#!" class="collection-item">Поиск</a></li>
-                                    <li><a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a></li>
+                                    {{--<li><a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a></li>--}}
                                 </ul>
                             </div>
                         </li>
