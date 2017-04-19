@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return redirect()->route('squid.view');
+    return redirect()->route('apache.test');
 });
 
 Auth::routes();
@@ -71,5 +71,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('restart',"SquidController@squidRestart");
     });
 
+    Route::group(['prefix' => 'squid'], function () {
+        Route::get('test', [
+            'as' => 'apache.test',
+            'uses' => 'ApacheController@test',
+        ]);
+    });
 
 });

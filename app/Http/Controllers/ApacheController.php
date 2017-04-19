@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Apache;
 use Illuminate\Http\Request;
 
 class ApacheController extends Controller
 {
-
+    protected $contData = [
+        'model' => Apache::class,
+    ];
     protected $path_root;
     protected $name_log;
 
@@ -48,8 +51,9 @@ class ApacheController extends Controller
         $file_path = $this->getFullPathLog();
         $file = file($file_path);
         if (file_exists($file_path)) {
+            $model = $this->contData['model'];
             $file = file($file_path);
-            $count_records_log = Squid::count();
+            $count_records_log = $model::count();
             if ($count_records_log > 0) {
                 $last_record_in_table = Squid::orderBy('id', 'desc')->first();
                 $last_line_in_log_arr = preg_grep("/$last_record_in_table->time/", $file);
@@ -78,7 +82,11 @@ class ApacheController extends Controller
             return false;
         } else {
             foreach ($array_from_log as $item) {
-                $arr_val = preg_split('/[?^\s]+/', $item);
+                $reg_str = '/[?^\s]+/';
+                $reg_str = '/^([^\s:]+):\s([^\s]+)\s\[([^[\]]+)]\s"(\w+)\s([^"]+)"\s(\d+)\s([^\s]+)\s"([^"]+)"\s"([^"]+)"/';
+                $arr_val = preg_match($reg_str, $item, $matches);
+//                $arr_val = preg_split($reg_str, $item);
+                dd($item, $arr_val, $matches);
                 $record = Squid::create([
                     'time' => $arr_val[0],
                     'time_convert' => $arr_val[0],
