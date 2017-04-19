@@ -49,8 +49,8 @@ class ApacheController extends Controller
     {
         $response = false;
         $file_path = $this->getFullPathLog();
-        $file = file($file_path);
         if (file_exists($file_path)) {
+            $file = file($file_path);
             $model = $this->contData['model'];
             $file = file($file_path);
             $count_records_log = $model::count();
@@ -82,7 +82,8 @@ class ApacheController extends Controller
             return false;
         } else {
             foreach ($array_from_log as $item) {
-                $reg_str = '/[?^\s]+/';
+//                $reg_str = '/[?^\s]+/';
+//                dd($item);
                 $reg_str = '/^([^\s:]+):\s([^\s]+)\s\[([^[\]]+)]\s"(\w+)\s([^"]+)"\s(\d+)\s([^\s]+)\s"([^"]+)"\s"([^"]+)"/';
                 $arr_val = preg_match($reg_str, $item, $matches);
 //                $arr_val = preg_split($reg_str, $item);
@@ -92,6 +93,7 @@ class ApacheController extends Controller
                     'client_address' => $matches[2],
                     'time' => $arr_val[3],
                     'time_convert' => $arr_val[3],
+                    'request_method' => $arr_val[4],
                 ];
                 $record = Squid::create([
                     'time' => $arr_val[0],
