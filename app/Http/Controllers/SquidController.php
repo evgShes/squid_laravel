@@ -55,8 +55,8 @@ http_access deny deny_rules
     {
         $response = false;
         $file_path = $this->getPathAccessLog();
-        $file = file($file_path);
         if (file_exists($file_path)) {
+            $file = file($file_path);
             $file = file($file_path);
             $count_records_log = Squid::count();
             if ($count_records_log > 0) {
