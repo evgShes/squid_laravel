@@ -86,7 +86,13 @@ class ApacheController extends Controller
                 $reg_str = '/^([^\s:]+):\s([^\s]+)\s\[([^[\]]+)]\s"(\w+)\s([^"]+)"\s(\d+)\s([^\s]+)\s"([^"]+)"\s"([^"]+)"/';
                 $arr_val = preg_match($reg_str, $item, $matches);
 //                $arr_val = preg_split($reg_str, $item);
-                dd($item, $arr_val, $matches);
+                dd(date_create($matches[3]), $item, $arr_val, $matches);
+                $data_save = [
+                    'domain' => $matches[1],
+                    'client_address' => $matches[2],
+                    'time' => $arr_val[3],
+                    'time_convert' => $arr_val[3],
+                ];
                 $record = Squid::create([
                     'time' => $arr_val[0],
                     'time_convert' => $arr_val[0],
