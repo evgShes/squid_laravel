@@ -29,10 +29,9 @@
         <li><a href="#!">Смена пароля</a></li>
         <li><a href="{{ route('logout') }}">Выход</a></li>
     </ul>
-    <nav class="lime darken-3" style="background-image: url({{asset('img/head_img.jpg')}});background-size:100%;">
+    <nav class="lime darken-3" id="site_header">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">Система распределения сетевыми ресурасами
-                ЕРЦ ЛНР</a>
+            <a href="{{ url('/') }}" class="brand-logo right">{{ $main_title or '' }}</a>
             <ul id="nav-mobile" class="left">
                 <li class="menu_side_nav"><a href=""><i class="material-icons left">reorder</i></a></li>
             </ul>
@@ -91,9 +90,6 @@
                                     <li>
                                         <a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>
                                     </li>
-                                    <li>
-                                        <a href="{{ route('squid.view') }}" class="collection-item">Squid-логи</a>
-                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -101,6 +97,12 @@
                             <div class="collapsible-body">
                                 <ul>
                                     <li><a href="#!" class="collection-item">Поиск</a></li>
+                                    <li>
+                                        <a href="{{ route('squid.log') }}" class="collection-item">Squid-логи</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('apache.log') }}" class="collection-item">Apache-логи</a>
+                                    </li>
                                     {{--<li><a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a></li>--}}
                                 </ul>
                             </div>

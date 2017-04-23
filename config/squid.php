@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'regex' => '/[?^\s]+/',
     'path_squid' => 'C:\squid',
     'path_squid_conf' => '\etc\squid.conf',
     'path_squid_log' => '\var\logs\access.log',

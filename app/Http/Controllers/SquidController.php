@@ -86,7 +86,8 @@ http_access deny deny_rules
             return false;
         } else {
             foreach ($array_from_log as $item) {
-                $arr_val = preg_split('/[?^\s]+/', $item);
+                $regex = config('squid.regex');
+                $arr_val = preg_split($regex, $item);
                 $record = Squid::create([
                     'time' => $arr_val[0],
                     'time_convert' => $arr_val[0],
@@ -158,9 +159,8 @@ http_access deny deny_rules
 
     public function viewSquidLog(Request $request)
     {
-        $squid_cont = new SquidController();
-        $squid_cont->parseLogs();
         $data = [];
+        $view = 'squid.squid_log';
         $records = Squid::with('relUser');
         if ($request->search) {
             if ($request->has('all_employer')) {
@@ -186,7 +186,6 @@ http_access deny deny_rules
             'records' => $records,
             'users' => UsersList::all(),
         ]);
-//        dd($data);
-        return view('users.users', $data);
+        return view($view, $data);
     }
 }

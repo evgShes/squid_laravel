@@ -63,19 +63,25 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix'=>'squid'],function (){
 
-        Route::match(['get', 'post'], 'view', [
-            'as' => 'squid.view',
+        Route::match(['get', 'post'], 'log', [
+            'as' => 'squid.log',
             'uses' => 'SquidController@viewSquidLog'
         ]);
 
         Route::post('restart',"SquidController@squidRestart");
     });
 
-    Route::group(['prefix' => 'squid'], function () {
+    Route::group(['prefix' => 'apache'], function () {
         Route::get('test', [
             'as' => 'apache.test',
             'uses' => 'ApacheController@test',
         ]);
+
+        Route::match(['get', 'post'], 'log', [
+            'as' => 'apache.log',
+            'uses' => 'ApacheController@view'
+        ]);
+
     });
 
 });

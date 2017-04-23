@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Apache;
 use Illuminate\Http\Request;
+use App\UsersList;
 
 class ApacheController extends Controller
 {
+
     protected $contData = [
         'model' => Apache::class,
     ];
     protected $path_root;
     protected $name_log;
-
+    protected $end = PHP_EOL;
     public function __construct()
     {
         $this->path_root = config('apache.path_apache_log');
@@ -55,10 +57,11 @@ class ApacheController extends Controller
             $file = file($file_path);
             $count_records_log = $model::count();
             if ($count_records_log > 0) {
-                $last_record_in_table = Squid::orderBy('id', 'desc')->first();
-                $last_line_in_log_arr = preg_grep("/$last_record_in_table->time/", $file);
-                if (!empty($last_line_in_log_arr)) {
-                    $key = key($last_line_in_log_arr) + 1;
+                $last_record_in_table = Apache::orderBy('id', 'desc')->first();
+                $data_search = $last_record_in_table->all . $this->end;
+                $last_line_in_log_arr = array_search($data_search, $file);
+                if ($last_line_in_log_arr !== false) {
+                    $key = $last_line_in_log_arr + 1;
                     $slice = array_slice($file, $key);
                     if (!empty($slice)) {
                         $save = $this->save($slice);
@@ -82,34 +85,63 @@ class ApacheController extends Controller
             return false;
         } else {
             foreach ($array_from_log as $item) {
-//                $reg_str = '/[?^\s]+/';
-//                dd($item);
-                $reg_str = '/^([^\s:]+):\s([^\s]+)\s\[([^[\]]+)]\s"(\w+)\s([^"]+)"\s(\d+)\s([^\s]+)\s"([^"]+)"\s"([^"]+)"/';
-                $arr_val = preg_match($reg_str, $item, $matches);
-//                $arr_val = preg_split($reg_str, $item);
-                dd(date_create($matches[3]), $item, $arr_val, $matches);
+                $regex = config('apache.regex');
+                $arr_val = preg_match($regex, $item, $matches);
+//                dd($regex,$matches);
                 $data_save = [
-                    'domain' => $matches[1],
+                    'all' => $matches[0],
+                    'server_name' => $matches[1],
                     'client_address' => $matches[2],
-                    'time' => $arr_val[3],
-                    'time_convert' => $arr_val[3],
-                    'request_method' => $arr_val[4],
+                    'time' => $matches[3],
+                    'time_convert' => $matches[3],
+                    'method' => $matches[4],
+                    'str_query' => $matches[5],
+                    'status' => $matches[6],
+                    'url_source' => $matches[7],
+                    'user_agent' => $matches[8],
+                    'size_no_head' => $matches[9],
+                    'size_head' => $matches[10],
+                    'size_send' => $matches[11],
+                    'size_response' => $matches[12],
+                    'time_request' => $matches[13],
                 ];
-                $record = Squid::create([
-                    'time' => $arr_val[0],
-                    'time_convert' => $arr_val[0],
-                    'duration' => $arr_val[1],
-                    'client_address' => $arr_val[2],
-                    'result_codes' => $arr_val[3],
-                    'bytes' => $arr_val[4],
-                    'request_method' => $arr_val[5],
-                    'url' => $arr_val[6],
-                    'user' => $arr_val[7],
-                    'hierarchy_code' => $arr_val[8],
-                    'type' => $arr_val[9],
-                ]);
+                $record = Apache::create($data_save);
             }
             return true;
         }
     }
+
+    public function view(Request $request)
+    {
+        $data = [];
+        $model = Apache::class;
+        $view = 'apache.apache_log';
+        $records = $model::with('relUser');
+        if ($request->search) {
+            if ($request->has('all_employer')) {
+                $id_user_arr = $request->all_employer;
+                $user_ip = UsersList::whereIn('id', $id_user_arr)->pluck('employer_ip');
+                if ($user_ip) {
+                    $records->whereIn('client_address', $user_ip);
+                    $data['user_id'] = $id_user_arr;
+                }
+            }
+
+            if ($request->has('all_date_from_submit') && $request->has('all_date_to_submit')) {
+                $date_from = date_create($request->all_date_from_submit)->format('Y.m.d') . ' 00:00:00';
+                $date_to = date_create($request->all_date_to_submit)->format('Y.m.d') . ' 23:59:59';
+                $records->whereBetween('time_convert', [$date_from, $date_to]);
+                $data['date_from'] = $date_from;
+                $data['date_to'] = $date_to;
+            }
+
+        }
+        $records = $records->orderBy('id', 'desc')->paginate(15);
+        $data = array_merge($data, [
+            'records' => $records,
+            'users' => UsersList::all(),
+        ]);
+        return view($view, $data);
+    }
+
 }

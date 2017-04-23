@@ -1,4 +1,6 @@
 <?php
 return [
-    'squid.view' => 'Squid-логи'
+    'main_title' => 'Web-сервис наблюдения активности пользователей',
+    'squid.log' => 'Squid-логи',
+    'apache.log' => 'Apache-логи',
 ];

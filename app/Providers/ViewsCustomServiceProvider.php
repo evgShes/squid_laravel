@@ -25,6 +25,7 @@ class ViewsCustomServiceProvider extends ServiceProvider
             if (Lang::has($local_elem)) {
                 $response_data['view_title'] = Lang::get($local_elem);
             }
+            $response_data['main_title'] = Lang::get('view_titles.main_title');
 //            dd($response_data);
             View::share($response_data);
         });
