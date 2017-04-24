@@ -29,7 +29,8 @@
         <li><a href="#!">Смена пароля</a></li>
         <li><a href="{{ route('logout') }}">Выход</a></li>
     </ul>
-    <nav class="lime darken-3" id="site_header">
+
+    <nav class="header-background" id="site_header">
         <div class="nav-wrapper">
             <a href="{{ url('/') }}" class="brand-logo right">{{ $main_title or '' }}</a>
             <ul id="nav-mobile" class="left">
@@ -75,8 +76,8 @@
             <ul id="slide-out" class="side-nav">
 
                 <li><div class="userView">
-                        <div class="background">
-                            <img src="{{asset('img/head_img.jpg')}}">
+                        <div class="background header-background">
+                            {{--<img src="{{asset('img/head_img.jpg')}}">--}}
                         </div>
                         <a href="" class="buttonshow" data-activates="slide-out"><i class="material-icons left">perm_identity</i></a>
                         <a href=""><span class="white-text name">@if(Auth::check()) {{ Auth::user()->login  }}@endif</span></a>
