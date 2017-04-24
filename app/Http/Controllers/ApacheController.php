@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Apache;
 use Illuminate\Http\Request;
 use App\UsersList;
+use Monolog\Handler\DynamoDbHandler;
 
 class ApacheController extends Controller
 {
@@ -23,6 +24,7 @@ class ApacheController extends Controller
 
     public function test(Request $request)
     {
+//        dd(env('NAME_APACHE_LOG'));
         dd($this->parseLogs());
     }
 
@@ -73,7 +75,7 @@ class ApacheController extends Controller
                 $response = true;
             }
         } else {
-            echo "No directory";
+            echo "No directory: $file_path";
         }
         return $response;
     }
