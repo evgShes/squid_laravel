@@ -2,9 +2,9 @@
 return [
     'apache' => [
 //        'all' => 'Все',
-        'server_name' => 'Имя сервера',
+//        'server_name' => 'Имя сервера',
         'client_address' => 'Адрес клиента',
-        'time' => '',
+//        'time' => '',
         'time_convert' => 'Дата',
         'method' => 'Метод',
         'str_query' => 'Запрос',

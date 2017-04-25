@@ -13,6 +13,10 @@ class SquidController extends Controller
 {
     use FunctionTrait;
 
+    public function test(Request $request)
+    {
+
+    }
 
     public function mainFunc(Request $request)
     {

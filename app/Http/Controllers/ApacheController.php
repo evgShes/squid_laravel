@@ -16,6 +16,7 @@ class ApacheController extends Controller
     protected $path_root;
     protected $name_log;
     protected $end = PHP_EOL;
+
     public function __construct()
     {
         $this->path_root = config('apache.path_apache_log');
@@ -69,6 +70,9 @@ class ApacheController extends Controller
                         $save = $this->save($slice);
                     }
                     $response = true;
+                } else {
+                    $save = $this->save($file);
+                    $response = true;
                 }
             } else {
                 $save = $this->save($file);
@@ -90,30 +94,38 @@ class ApacheController extends Controller
                 $regex = config('apache.regex');
                 $arr_val = preg_match($regex, $item, $matches);
 //                dd($regex,$matches);
-                $data_save = [
-                    'all' => $matches[0],
-                    'server_name' => $matches[1],
-                    'client_address' => $matches[2],
-                    'time' => $matches[3],
-                    'time_convert' => $matches[3],
-                    'method' => $matches[4],
-                    'str_query' => $matches[5],
-                    'status' => $matches[6],
-                    'url_source' => $matches[7],
-                    'user_agent' => $matches[8],
-                    'size_no_head' => $matches[9],
-                    'size_head' => $matches[10],
-                    'size_send' => $matches[11],
-                    'size_response' => $matches[12],
-                    'time_request' => $matches[13],
-                ];
-                $record = Apache::create($data_save);
+                if (!empty($matches)) {
+                    $data_save = [
+                        'all' => $matches[0],
+                        'server_name' => $matches[1],
+                        'client_address' => $matches[2],
+                        'time' => $matches[3],
+                        'time_convert' => $matches[3],
+                        'method' => $matches[4],
+                        'str_query' => $matches[5],
+                        'status' => $matches[6],
+                        'url_source' => $matches[7],
+                        'user_agent' => $matches[8],
+                        'size_no_head' => $matches[9],
+                        'size_head' => $matches[10],
+                        'size_send' => $matches[11],
+                        'size_response' => $matches[12],
+                        'time_request' => $matches[13],
+                    ];
+                } else {
+                    echo 'Ошибка разбора логов';
+                    exit;
+                }
+                if (!stripos($data_save['url_source'], 'apache/update') && !stripos($data_save['url_source'], 'apache/log')) {
+                    $record = Apache::create($data_save);
+                }
+                unset($data_save);
             }
             return true;
         }
     }
 
-    public function view(Request $request)
+    public function view(Request $request, $paginate = 10)
     {
         $data = [];
         $model = Apache::class;
@@ -138,7 +150,7 @@ class ApacheController extends Controller
             }
 
         }
-        $records = $records->orderBy('id', 'desc')->paginate(15);
+        $records = $records->orderBy('id', 'desc')->paginate($paginate);
         $data = array_merge($data, [
             'records' => $records,
             'users' => UsersList::all(),
@@ -146,4 +158,10 @@ class ApacheController extends Controller
         return view($view, $data);
     }
 
+    public function updateTable()
+    {
+        $update = $this->parseLogs();
+        $response = ($update) ? true : false;
+        return response()->json($response);
+    }
 }

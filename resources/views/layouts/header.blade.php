@@ -94,7 +94,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="bold"><a class="collapsible-header  waves-effect waves-teal"><i class="material-icons">settings_applications</i>Система</a>
+                        <li class="bold"><a class="collapsible-header  waves-effect waves-teal"><i
+                                        class="material-icons">settings_applications</i>Логирование</a>
                             <div class="collapsible-body">
                                 <ul>
                                     <li><a href="#!" class="collection-item">Поиск</a></li>

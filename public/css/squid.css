@@ -15,7 +15,8 @@
     background-color: #00acc1 !important;
 }
 #table_log td {
-    height: 50px;
+    width: 50px;
+    max-width: 200px;
     overflow: auto;
 }
 

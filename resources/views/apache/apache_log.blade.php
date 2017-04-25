@@ -28,51 +28,60 @@
             </div>
         </div>
     </form>
-    <div class="row">
-        <div class="col m12" style="overflow: auto">
-            <table class="bordered highlight responsive-table" id="table_log">
-            <thead>
-            <?php
-            $table_title = trans('table.apache');
-            ?>
-            {{--            {{ dd(trans('table.apache')) }}--}}
-            <tr>
-                @foreach($table_title as $tab_title)
-                    <th>{{ $tab_title }}</th>
-                @endforeach
-                {{--<th>Ф.И.О/ ИП адрес</th>--}}
-                {{--<th>Отдел</th>--}}
-                {{--<th>Дата и время</th>--}}
-                {{--<th>Тип соединения</th>--}}
-                {{--<th>Адрес/порт</th>--}}
-                {{--<th>Количество трафика</th>--}}
-            </tr>
-            </thead>
-            <tbody>
+    <div>
+        <div class="row" id="update-table">
+            <div class="col m12" style="overflow: auto">
+                <table class="bordered highlight responsive-table" id="table_log">
+                    <thead>
+                    <?php
+                    $table_title = trans('table.apache');
+                    ?>
+                    {{--            {{ dd(trans('table.apache')) }}--}}
+                    <tr>
+                        @foreach($table_title as $tab_title)
+                            <th>{{ $tab_title }}</th>
+                        @endforeach
+                        {{--<th>Ф.И.О/ ИП адрес</th>--}}
+                        {{--<th>Отдел</th>--}}
+                        {{--<th>Дата и время</th>--}}
+                        {{--<th>Тип соединения</th>--}}
+                        {{--<th>Адрес/порт</th>--}}
+                        {{--<th>Количество трафика</th>--}}
+                    </tr>
+                    </thead>
+                    <tbody>
 
-            @foreach($records as $record)
-                <?php
-                $user_data = $record->relUser;
-                ?>
-                <tr>
-                    @foreach($record->toArray() as $key=> $value)
-                        @if(array_key_exists($key, $table_title))
-                            <td>{{ $value or '' }}</td>
-                        @endif
+                    @foreach($records as $record)
+                        <?php
+                        $user_data = $record->relUser;
+                        ?>
+                        <tr>
+                            @foreach($record->toArray() as $key=> $value)
+                                @if(array_key_exists($key, $table_title))
+                                    <td>{{ $value or '' }}</td>
+                                @endif
+                            @endforeach
+                            {{--<td>{{ $user_data->employer_name or $record->client_address}}</td>--}}
+                            {{--<td>@if(!empty($user_data->employer_department)) {{ $user_data->getDepartment()[$user_data->employer_department] }} @endif</td>--}}
+                            {{--<td>{{ $record->time_convert or ''}}</td>--}}
+                            {{--<td>{{ $record->request_method or '' }}</td>--}}
+                            {{--<td>{{ $record->url or '' }}</td>--}}
+                            {{--<td>@if(!empty(mb_strimwidth ($record->bytes / 1024,0, 4))){{ mb_strimwidth($record->bytes / 1024,0, 4) }}@else--}}
+                            {{--0 @endifМб--}}
+                            {{--</td>--}}
+                        </tr>
                     @endforeach
-                    {{--<td>{{ $user_data->employer_name or $record->client_address}}</td>--}}
-                    {{--<td>@if(!empty($user_data->employer_department)) {{ $user_data->getDepartment()[$user_data->employer_department] }} @endif</td>--}}
-                    {{--<td>{{ $record->time_convert or ''}}</td>--}}
-                    {{--<td>{{ $record->request_method or '' }}</td>--}}
-                    {{--<td>{{ $record->url or '' }}</td>--}}
-                    {{--<td>@if(!empty(mb_strimwidth ($record->bytes / 1024,0, 4))){{ mb_strimwidth($record->bytes / 1024,0, 4) }}@else--}}
-                    {{--0 @endifМб--}}
-                    {{--</td>--}}
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
+            </div>
+            {{ $records->links() }}
+        </div>
     </div>
-        {{ $records->links() }}
+    <div class="row">
+        <div class="col md3 offset-m11">
+            <button class="btn btn-block green waves-effect" id="update-btn" data-url='{{ route('apache.update') }}'>
+                Обновить
+            </button>
+        </div>
     </div>
 @stop

@@ -63,6 +63,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix'=>'squid'],function (){
 
+        Route::get('test', [
+            'as' => 'squid.test',
+            'uses' => 'SquidController@test',
+        ]);
+
         Route::match(['get', 'post'], 'log', [
             'as' => 'squid.log',
             'uses' => 'SquidController@viewSquidLog'
@@ -82,6 +87,10 @@ Route::group(['middleware' => 'auth'], function () {
             'uses' => 'ApacheController@view'
         ]);
 
+        Route::post('update', [
+            'as' => 'apache.update',
+            'uses' => 'ApacheController@updateTable'
+        ]);
     });
 
 });
