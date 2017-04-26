@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return redirect()->route('apache.test');
+    return redirect()->route('home');
 });
 
 Auth::routes();
@@ -32,6 +32,12 @@ Route::get('/home', 'HomeController@index');
 
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/home', [
+        'as' => 'home',
+        'uses' => 'HomeController@index'
+    ]);
+
     Route::get('view', function () {
         return view('control_panel.settings');
     });

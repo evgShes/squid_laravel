@@ -49,4 +49,20 @@ class Apache extends Model
             return $this->relUser->employer_name;
         }
     }
+
+
+    // Scopes
+    // Возвращаем записи с методом пост
+    public function scopeMethod($query, $type = 'any')
+    {
+        if ($type == 'any') return $query;
+        return $query->where('method', $type);
+    }
+
+    // Выборка по статусам
+    public function scopeStatus($query, $type = 'any')
+    {
+        if ($type == 'any') return $query;
+        return $query->where('status', $type);
+    }
 }

@@ -1,17 +1,21 @@
-@extends('layouts.app')
-
+@extends("layouts.default")
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
 
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
+    <div class="row">
+        <div class="col m12 center-align">
+            <h4>Статистика</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-</div>
 @endsection

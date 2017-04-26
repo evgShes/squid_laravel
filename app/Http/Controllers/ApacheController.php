@@ -25,8 +25,8 @@ class ApacheController extends Controller
 
     public function test(Request $request)
     {
-//        dd(env('NAME_APACHE_LOG'));
-        dd($this->parseLogs());
+        $logs = Apache::status('404')->method('get')->get();
+        dd($logs);
     }
 
     /**

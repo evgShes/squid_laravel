@@ -54,7 +54,7 @@
                         <td>{{ $record->request_method or '' }}</td>
                         <td>{{ $record->url or '' }}</td>
                         <td>@if(!empty(mb_strimwidth ($record->bytes / 1024,0, 4))){{ mb_strimwidth($record->bytes / 1024,0, 4) }}@else
-                                0 @endifМб
+                                0 @endif Мб
                         </td>
                     </tr>
                 @endforeach
