@@ -36,7 +36,7 @@ jQuery(function ($) {
                notyBotRight({
                    text:'Настройки вступят в силу через несколько минут.'
                });
-                $.post('/squid/restart',function (data) {
+               $.post('/logs/squid/restart', function (data) {
                     if (data){
                         notyBotRight({
                             text:'Настройки вступили в силу.'

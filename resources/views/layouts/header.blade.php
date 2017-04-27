@@ -41,38 +41,6 @@
 </header>
 <div class="container">
     <div class="row">
-        {{--<div class="col s2">--}}
-        {{--<ul class="collapsible popout" data-collapsible="accordion">--}}
-            {{--<li>--}}
-                {{--<div class="collapsible-header"><i class="material-icons">recent_actors</i>Пользователи</div>--}}
-                {{--<div class="collapsible-body">--}}
-                    {{--<div class="collection">--}}
-                        {{--<a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>--}}
-                        {{--<a href="{{ route('squid.view') }}" class="collection-item">Логи</a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</li>--}}
-            {{--<li>--}}
-                {{--<div class="collapsible-header"><i class="material-icons">settings_applications</i>Система</div>--}}
-                {{--<div class="collapsible-body">--}}
-                    {{--<div class="collection">--}}
-                        {{--<a href="#!" class="collection-item">Поиск</a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</li>--}}
-            {{--<li>--}}
-                {{--<div class="collapsible-header"><i class="material-icons">view_module</i>Панель управления</div>--}}
-                {{--<div class="collapsible-body">--}}
-                    {{--<div class="collection">--}}
-                        {{--<a href="#!" class="collection-item">Статистика</a>--}}
-                        {{--<a href="{{ route('site.view') }}" class="collection-item">Настройки</a>--}}
-                        {{--<a href="{{ route('view','control_panel.report') }}" class="collection-item">Отчеты</a>--}}
-
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</li>--}}
-        {{--</ul>--}}
-
             <ul id="slide-out" class="side-nav">
 
                 <li><div class="userView">
@@ -98,13 +66,16 @@
                                         class="material-icons">settings_applications</i>Логирование</a>
                             <div class="collapsible-body">
                                 <ul>
-                                    <li><a href="#!" class="collection-item">Поиск</a></li>
+                                    {{--<li><a href="#!" class="collection-item">Поиск</a></li>--}}
                                     <li>
                                         <a href="{{ route('squid.log') }}" class="collection-item">Squid-логи</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('apache.log') }}" class="collection-item">Apache-логи</a>
                                     </li>
+
+                                    <li><a href="{{ route('statistics') }}" class="collection-item">Статистика</a></li>
+
                                     {{--<li><a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a></li>--}}
                                 </ul>
                             </div>
@@ -112,7 +83,6 @@
                         <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">view_module</i>Панель управления</a>
                             <div class="collapsible-body" style="">
                                 <ul>
-                                    <li><a href="#!" class="collection-item">Статистика</a></li>
                                     <li><a href="{{ route('site.view') }}" class="collection-item">Настройки</a></li>
                                     <li><a href="{{ route('view','control_panel.report') }}" class="collection-item">Отчеты</a></li>
                                 </ul>

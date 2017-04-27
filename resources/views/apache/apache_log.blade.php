@@ -1,6 +1,6 @@
 @extends("layouts.default")
 @section('content')
-    <form action="{{ route('squid.log') }}" method="post">
+    <form action="{{ route('apache.log') }}" method="post">
         {{ csrf_field() }}
         <div class="row">
             <div class="col m4 input-field">
@@ -23,8 +23,26 @@
                 <input type="date" class="date_bootstrap" id="date_to" name="all_date_to">
             </div>
             <div class="col m2 input-field  ">
-                <button class="btn blue darken-2 pulse  waves-effect" type="submit" name="search" value="1">Найти
+                <button class="btn blue darken-2 pulse  waves-effect" type="submit" name="search" value="1"
+                        id="search_log">Найти
                 </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m12">
+                <select name="log_type[]" id="" multiple>
+                    <option value="" disabled></option>
+                    <option value="1" @if(isset($log_type) && in_array('1',$log_type)) selected @endif>Метод "POST"
+                    </option>
+                    <option value="2" @if(isset($log_type) && in_array('2',$log_type)) selected @endif>Метод "GET"
+                    </option>
+                    <option value="3" @if(isset($log_type) && in_array('3',$log_type)) selected @endif>Обращение к
+                        несуществующим адресам(404)
+                    </option>
+                    <option value="4" @if(isset($log_type) && in_array('4',$log_type)) selected @endif>Обращение к
+                        запрещенным адресам(403)
+                    </option>
+                </select>
             </div>
         </div>
     </form>
@@ -58,17 +76,14 @@
                         <tr>
                             @foreach($record->toArray() as $key=> $value)
                                 @if(array_key_exists($key, $table_title))
-                                    <td>{{ $value or '' }}</td>
+                                    @if($key == 'client_address')
+                                        <td>{{ $value or ''}}@if($user_data)({{ $user_data->employer_name }}
+                                            ) @endif</td>
+                                    @else
+                                        <td>{{ $value or '' }}</td>
+                                    @endif
                                 @endif
                             @endforeach
-                            {{--<td>{{ $user_data->employer_name or $record->client_address}}</td>--}}
-                            {{--<td>@if(!empty($user_data->employer_department)) {{ $user_data->getDepartment()[$user_data->employer_department] }} @endif</td>--}}
-                            {{--<td>{{ $record->time_convert or ''}}</td>--}}
-                            {{--<td>{{ $record->request_method or '' }}</td>--}}
-                            {{--<td>{{ $record->url or '' }}</td>--}}
-                            {{--<td>@if(!empty(mb_strimwidth ($record->bytes / 1024,0, 4))){{ mb_strimwidth($record->bytes / 1024,0, 4) }}@else--}}
-                            {{--0 @endifМб--}}
-                            {{--</td>--}}
                         </tr>
                     @endforeach
                     </tbody>

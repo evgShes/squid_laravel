@@ -28,39 +28,49 @@
             </div>
         </div>
     </form>
-    <div class="row">
-        <div class="col m12">
-            <table class="bordered highlight responsive-table">
-                <thead>
-                <tr>
-                    <th>Ф.И.О/ ИП адрес</th>
-                    <th>Отдел</th>
-                    <th>Дата и время</th>
-                    <th>Тип соединения</th>
-                    <th>Адрес/порт</th>
-                    <th>Количество трафика</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                @foreach($records as $record)
-                    <?php
-                    $user_data = $record->relUser;
-                    ?>
+    <div>
+        <div class="row" id="update-table">
+            <div class="col m12">
+                <table class="bordered highlight responsive-table" id="table_log">
+                    <thead>
                     <tr>
-                        <td>{{ $user_data->employer_name or $record->client_address}}</td>
-                        <td>@if(!empty($user_data->employer_department)) {{ $user_data->getDepartment()[$user_data->employer_department] }} @endif</td>
-                        <td>{{ $record->time_convert or ''}}</td>
-                        <td>{{ $record->request_method or '' }}</td>
-                        <td>{{ $record->url or '' }}</td>
-                        <td>@if(!empty(mb_strimwidth ($record->bytes / 1024,0, 4))){{ mb_strimwidth($record->bytes / 1024,0, 4) }}@else
-                                0 @endif Мб
-                        </td>
+                        <th>Ф.И.О/ ИП адрес</th>
+                        <th>Отдел</th>
+                        <th>Дата и время</th>
+                        <th>Тип соединения</th>
+                        <th>Адрес/порт</th>
+                        <th>Количество трафика</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
-            {{ $records->links() }}
+                    </thead>
+                    <tbody>
+
+                    @foreach($records as $record)
+                        <?php
+                        $user_data = $record->relUser;
+                        ?>
+                        <tr>
+                            <td>{{ $record->client_address}}@if($user_data->employer_name)
+                                    ({{ $user_data->employer_name }}) @endif</td>
+                            <td>@if(!empty($user_data->employer_department)) {{ $user_data->getDepartment()[$user_data->employer_department] }} @endif</td>
+                            <td>{{ $record->time_convert or ''}}</td>
+                            <td>{{ $record->request_method or '' }}</td>
+                            <td>{{ $record->url or '' }}</td>
+                            <td>@if(!empty(mb_strimwidth ($record->bytes / 1024,0, 4))){{ mb_strimwidth($record->bytes / 1024,0, 4) }}@else
+                                    0 @endif Мб
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                {{ $records->links() }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col m3 offset-m10">
+            <button class="btn btn-block green waves-effect" id="update-btn" data-url='{{ route('squid.update') }}'>
+                Обновить
+            </button>
         </div>
     </div>
 @stop

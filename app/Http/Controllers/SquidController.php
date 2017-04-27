@@ -192,4 +192,11 @@ http_access deny deny_rules
         ]);
         return view($view, $data);
     }
+
+    public function updateTable()
+    {
+        $update = $this->parseLogs();
+        $response = ($update) ? true : false;
+        return response()->json($response);
+    }
 }

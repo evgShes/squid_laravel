@@ -67,36 +67,51 @@ Route::group(['middleware' => 'auth'], function () {
         ]);
     });
 
-    Route::group(['prefix'=>'squid'],function (){
+    Route::group(['prefix' => 'logs'], function () {
+        Route::group(['prefix' => 'squid'], function () {
 
-        Route::get('test', [
-            'as' => 'squid.test',
-            'uses' => 'SquidController@test',
-        ]);
+            Route::get('test', [
+                'as' => 'squid.test',
+                'uses' => 'SquidController@test',
+            ]);
 
-        Route::match(['get', 'post'], 'log', [
-            'as' => 'squid.log',
-            'uses' => 'SquidController@viewSquidLog'
-        ]);
+            Route::match(['get', 'post'], 'log', [
+                'as' => 'squid.log',
+                'uses' => 'SquidController@viewSquidLog'
+            ]);
 
-        Route::post('restart',"SquidController@squidRestart");
+            Route::post('restart', "SquidController@squidRestart");
+
+            Route::post('update', [
+                'as' => 'squid.update',
+                'uses' => 'SquidController@updateTable'
+            ]);
+        });
+
+        Route::group(['prefix' => 'apache'], function () {
+            Route::get('test', [
+                'as' => 'apache.test',
+                'uses' => 'ApacheController@test',
+            ]);
+
+            Route::match(['get', 'post'], 'log', [
+                'as' => 'apache.log',
+                'uses' => 'ApacheController@view'
+            ]);
+
+            Route::post('update', [
+                'as' => 'apache.update',
+                'uses' => 'ApacheController@updateTable'
+            ]);
+        });
+
+        Route::group(['prefix' => 'statistics'], function () {
+            Route::get('/', [
+                'as' => 'statistics',
+                'uses' => 'LogsController@staticView'
+            ]);
+        });
     });
 
-    Route::group(['prefix' => 'apache'], function () {
-        Route::get('test', [
-            'as' => 'apache.test',
-            'uses' => 'ApacheController@test',
-        ]);
-
-        Route::match(['get', 'post'], 'log', [
-            'as' => 'apache.log',
-            'uses' => 'ApacheController@view'
-        ]);
-
-        Route::post('update', [
-            'as' => 'apache.update',
-            'uses' => 'ApacheController@updateTable'
-        ]);
-    });
 
 });

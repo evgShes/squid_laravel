@@ -127,6 +127,7 @@ class ApacheController extends Controller
 
     public function view(Request $request, $paginate = 10)
     {
+//        dd($request->all());
         $data = [];
         $model = Apache::class;
         $view = 'apache.apache_log';
@@ -147,6 +148,27 @@ class ApacheController extends Controller
                 $records->whereBetween('time_convert', [$date_from, $date_to]);
                 $data['date_from'] = $date_from;
                 $data['date_to'] = $date_to;
+            }
+
+            if ($request->has('log_type')) {
+                $log_type = $request->log_type;
+                foreach ($log_type as $type) {
+                    switch ($type) {
+                        case 1:
+                            $records->method('POST');
+                            break;
+                        case 2:
+                            $records->method('GET');
+                            break;
+                        case 3:
+                            $records->status('404');
+                            break;
+                        case 4:
+                            $records->status('403');
+                            break;
+                    }
+                }
+                $data['log_type'] = $log_type;
             }
 
         }

@@ -48,13 +48,13 @@ jQuery(function($){
     //     });
     // });
 
-    $('#modal_add_site .modal-content :input').on('input',function(){
-        console.log($(this).find('#link_site').val());
-        if($(this).find('#link_site').val()!='' && $(this).find('#name_site').val()!=''){
-            $('#button_add_modal_add_site').prop('disabled',false)
-        }
-        else{
-            $('#button_add_modal_add_site').prop('disabled',true)
-        }
-    });
+    // $('#modal_add_site .modal-content :input').on('input',function(){
+    //     console.log($(this).find('#link_site').val());
+    //     if($(this).find('#link_site').val()!='' && $(this).find('#name_site').val()!=''){
+    //         $('#button_add_modal_add_site').prop('disabled',false)
+    //     }
+    //     else{
+    //         $('#button_add_modal_add_site').prop('disabled',true)
+    //     }
+    // });
 });
