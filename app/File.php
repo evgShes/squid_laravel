@@ -18,17 +18,21 @@ class File extends Model
     ];
 
 
-    public static function saveFile($file, $file_path, $array_val = []){
-        $model = new static();
-        $data = array_merge([
-            'path'=>$file_path,
-            'originalName'=>$file->getClientOriginalName(),
-            'mimeType'=>$file->getMimeType(),
-            'size'=>$file->getClientSize(),
-            'extension'=>$file->extension(),
-        ],$array_val);
-
-        return $model->create($data);
+    public static function saveFile($file, $array_val = [])
+    {
+        $file_store = $file->store('files/img', 'uploads');
+        if ($file_store) {
+            $model = new static();
+            $data = array_merge([
+                'path' => $file_store,
+                'originalName' => $file->getClientOriginalName(),
+                'mimeType' => $file->getMimeType(),
+                'size' => $file->getClientSize(),
+                'extension' => $file->extension(),
+            ], $array_val);
+            return $model->create($data);
+        }
+        return false;
     }
 
 

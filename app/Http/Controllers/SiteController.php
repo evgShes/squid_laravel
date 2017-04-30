@@ -24,21 +24,21 @@ class SiteController extends Controller
 
     public function create(SiteRequest $request)
     {
+        $resp = false;
         $input = $request->except('file');
         $input = array_merge($input, parse_url($request->domain));
         if (!array_key_exists('host', $input)) return response()->json(['noty' => 'Проверте правильность ввода доменного имени.'], 422);
         $save_site = Site::trtCreateOrEdit($input);
+
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $file_store = $request->file->store('files/img', 'uploads');
-            if ($file_store) {
-                $saveFile = File::saveFile($file, $file_store, [
-                    'rel_type' => Site::class,
-                    'rel_id' => $save_site->id,
-                ]);
-            }
+            $saveFile = File::saveFile($file, [
+                'rel_type' => Site::class,
+                'rel_id' => $save_site->id,
+            ]);
         }
-        return response()->json(true);
+        if ($saveFile) $resp = true;
+        return response()->json($resp);
     }
 
     public function block(Request $request)
