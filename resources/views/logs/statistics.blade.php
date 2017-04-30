@@ -10,6 +10,7 @@
                 <th>Обращения к несуществующим адресам</th>
                 <th>Обращения к адресам сзакрытым доступом</th>
                 <th>Число успешных соединений</th>
+                <th>Количество отправленных мегабайт</th>
                 {{--<th>Тип соединения</th>--}}
                 {{--<th>Адрес/порт</th>--}}
                 {{--<th>Количество трафика</th>--}}
@@ -20,10 +21,11 @@
                         {{--{{ dd($record) }}--}}
                         <tr>
                             <td>{{ $record->client_address or '' }}</td>
-                            <td>{{ $record->employer_name or '' }}</td>
+                            <td>{{ $record->getUserNameByIp() }}</td>
                             <td>{{ $record->not_found or '' }}</td>
                             <td>{{ $record->forbidden or '' }}</td>
                             <td>{{ $record->ok or '' }}</td>
+                            <td>{{ (empty($record->send))?:$record->send.'Мб' }}</td>
                         </tr>
                     @endforeach
                 @endif

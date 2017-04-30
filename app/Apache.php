@@ -35,10 +35,6 @@ class Apache extends Model
         return $this->attributes['time_convert'] = $data;
     }
 
-    public function relUser()
-    {
-        return $this->hasOne(UsersList::class, 'employer_ip', 'client_address');
-    }
 
 
     public function getUserNameByIp()
@@ -64,5 +60,11 @@ class Apache extends Model
     {
         if ($type == 'any') return $query;
         return $query->where('status', $type);
+    }
+
+    // RELATION
+    public function relUser()
+    {
+        return $this->hasOne(UsersList::class, 'employer_ip', 'client_address');
     }
 }
