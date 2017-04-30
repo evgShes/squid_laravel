@@ -113,5 +113,18 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 
+    Route::group(['prefix' => 'report'], function () {
+
+        Route::get('/', [
+            'as' => 'control_panel.report',
+            'uses' => 'SquidController@viewReport'
+        ]);
+
+        Route::post('/', [
+            'as' => 'control_panel.report',
+            'uses' => 'SquidController@getReport'
+        ]);
+
+    });
 
 });

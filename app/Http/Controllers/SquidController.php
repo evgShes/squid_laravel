@@ -199,4 +199,43 @@ http_access deny deny_rules
         $response = ($update) ? true : false;
         return response()->json($response);
     }
+
+    public function viewReport()
+    {
+        $users = UsersList::all();
+        $data = [
+            'users' => $users
+        ];
+        return view('control_panel.report', $data);
+    }
+
+    public function getReport(Request $request)
+    {
+
+        $records = Squid::with('relUser');
+        if ($request->has('user')) {
+            $user_id = $request->user;
+            $user = UsersList::find($user_id);
+            $records->where('client_address', $user->employer_ip);
+        }
+
+        if ($request->has('report_type')) {
+            $type = $request->report_type;
+            switch ($type) {
+                case 1:
+                    $date = date_create(null);
+                    dd(strftime('%m', strtotime('first day of previous month')));
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+            }
+        }
+        dd($request->all(), $records->get());
+
+        return redirect()->back();
+    }
 }
