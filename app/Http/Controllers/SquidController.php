@@ -211,7 +211,7 @@ http_access deny deny_rules
 
     public function getReport(Request $request)
     {
-
+//        dd($request->all());
         $records = Squid::with('relUser');
         if ($request->has('user')) {
             $user_id = $request->user;
@@ -223,18 +223,30 @@ http_access deny deny_rules
             $type = $request->report_type;
             switch ($type) {
                 case 1:
-                    $date = date_create(null);
-                    dd(strftime('%m', strtotime('first day of previous month')));
+                    $date_from = date('Y-m-d', strtotime('first day of previous month'));
+                    $date_to = date('Y-m-d', strtotime('last day of previous month'));
                     break;
                 case 2:
-
+                    $date_from = date('Y-m-d', strtotime('last day'));
+                    $date_to = date('Y-m-d', strtotime('last day'));
+//                    $records->whereBetween('time_convert', [$date_from, $date_to]);
                     break;
                 case 3:
+                    if ($request->has([$request->report_date_from_submit, $request->report_date_to_submit])) {
+                        $date_from = date('Y-m-d', strtotime($request->report_date_from_submit));
+                        $date_to = date('Y-m-d', strtotime($request->report_date_to_submit));
+                    } else {
+                        return redirect()->back();
+                    }
 
                     break;
             }
+            $date_from .= ' 00:00:00';
+            $date_to .= ' 23:59:59';
+
+            $records->whereBetween('time_convert', [$date_from, $date_to]);
         }
-        dd($request->all(), $records->get());
+        dd($request->all(), $date_from, $date_to, $records->get(), $records->toSql());
 
         return redirect()->back();
     }
