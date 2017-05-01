@@ -1,6 +1,6 @@
 jQuery(function($){
     $('#type_report').on('change',function(){
-        if($(this).val()=='4'){
+        if ($(this).val() == '3') {
             $('#date_from,#date_to').prop('disabled',false);
         }
         else{
