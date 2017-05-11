@@ -46,7 +46,8 @@
     </div>
     <div class="row">
         <div class="input-field col m2 offset-m10">
-            <button class="btn waves-effect waves-light blue" type="submit" id="generate_report" data-url="#">
+            <button class="btn waves-effect waves-light blue" type="submit" id="generate_report" data-url="#"
+                    name="report_btn" value="btn_report">
                 Сформировать
             </button>
         </div>
