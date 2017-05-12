@@ -9,17 +9,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Tests\HttpCache\StoreTest;
+use Illuminate\Support\Facades\DB;
 
 class SquidController extends Controller
 {
     use FunctionTrait;
 
 
-    public function mainFunc(Request $request)
+    public function test(Request $request)
     {
 
-        dd($this->parseLogs());
-        dd(Storage::disk('local')->exists('files/bKUY8gBCMrQgbnHdLlrLiYeMNLmLB7G2SMSZ6DpC.jpeg'));
+        $this->topResources();
+//        dd($this->parseLogs());
+//        dd(Storage::disk('local')->exists('files/bKUY8gBCMrQgbnHdLlrLiYeMNLmLB7G2SMSZ6DpC.jpeg'));
 //        dd(parse_url('https://vk.com/feed'));
 //        dd(exec("squid -n Squid -f c:/squid/etc/squid.conf -k reconfigure"));
 //        dd($this->initialDeny());
@@ -29,6 +31,16 @@ class SquidController extends Controller
     }
 
 
+    public function topResources()
+    {
+        $query = Squid::select(DB::raw('squids.url, squids.request_method as method, COUNT(*) as cnt'))
+            ->where(['request_method' => 'GET'])->orWhere(['request_method' => 'POST'])
+            ->groupBy('url', 'method')
+            ->orderBY('cnt', 'DESC')
+            ->limit(10);
+        dd($query->get());
+    }
+    
     public function getAclDeny()
     {
         $string = sprintf('
