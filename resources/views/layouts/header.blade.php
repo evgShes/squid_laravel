@@ -29,10 +29,10 @@
         <li><a href="#!">Смена пароля</a></li>
         <li><a href="{{ route('logout') }}">Выход</a></li>
     </ul>
-    <nav class="indigo darken-3">
+    <nav style="background-image: url({{ asset('img/Network.jpg') }}); background-position: right bottom; background-size: 100%" class="indigo darken-3">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo center">Система распределения сетевыми ресурасами
-                ЕРЦ ЛНР</a>
+                ЕРЦP</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">perm_identity</i>@if(Auth::check()) {{ Auth::user()->login  }}@endif<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
@@ -64,7 +64,8 @@
                     <div class="collapsible-header"><i class="material-icons">view_module</i>Панель управления</div>
                     <div class="collapsible-body">
                         <div class="collection">
-                            <a href="#!" class="collection-item">Статистика</a>
+                            {{--<a href="{{ url('views/control_panel/statistics') }}" class="collection-item">Статистика</a>--}}
+                            <a href="{{ route('view','control_panel.statistics') }}" class="collection-item">Статистика</a>
                             <a href="{{ route('site.view') }}" class="collection-item">Настройки</a>
                             <a href="{{ route('control_panel.report') }}" class="collection-item">Отчеты</a>
 
@@ -72,67 +73,6 @@
                     </div>
                 </li>
             </ul>
-
-            {{--<ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0%);">--}}
-
-                {{--<li><div class="userView">--}}
-                        {{--<div class="background">--}}
-                            {{--<img src="{{asset('img/head_img.jpg')}}">--}}
-                        {{--</div>--}}
-                        {{--<a href=""><i class="material-icons left">perm_identity</i></a>--}}
-                        {{--<a href=""><span class="white-text name">@if(Auth::check()) {{ Auth::user()->login  }}@endif</span></a>--}}
-                        {{--<a href=""><span class="white-text email">@if(Auth::check()) {{ Auth::user()->email  }}@endif</span></a>--}}
-                    {{--</div></li>--}}
-                {{--<li class="no-padding">--}}
-                    {{--<ul class="collapsible collapsible-accordion">--}}
-                        {{--<li class="bold"><a class="collapsible-header  waves-effect waves-teal"><i class="material-icons">recent_actors</i>Пользователи</a>--}}
-                            {{--<div class="collapsible-body">--}}
-                                {{--<ul>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="{{ route('view','users.users') }}" class="collection-item">Пользователи</a>--}}
-                                    {{--</li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                        {{--</li>--}}
-                        {{--<li class="bold"><a class="collapsible-header  waves-effect waves-teal"><i class="material-icons">settings_applications</i>Система</a>--}}
-                            {{--<div class="collapsible-body">--}}
-                                {{--<ul>--}}
-                                    {{--<li><a href="#!" class="collection-item">Поиск</a></li>--}}
-                                    {{--<li><a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                        {{--</li>--}}
-                        {{--<li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">view_module</i>Панель управления</a>--}}
-                            {{--<div class="collapsible-body" style="">--}}
-                                {{--<ul>--}}
-                                    {{--<li><a href="#!" class="collection-item">Статистика</a></li>--}}
-                                    {{--<li><a href="{{ route('site.view') }}" class="collection-item">Настройки</a></li>--}}
-                                    {{--<li><a href="{{ route('view','control_panel.report') }}" class="collection-item">Отчеты</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                        {{--</li>--}}
-                    {{--</ul>--}}
-                {{--</li>--}}
-            {{--</ul>--}}
-
-            <!--<ul id="slide-out" class="side-nav fixed">-->
-            <!--<li><div class="userView">-->
-            <!--<div class="background">-->
-            <!--<img src="images/office.jpg">-->
-            <!--</div>-->
-            <!--<a href="#!user"><img class="circle" src="images/yuna.jpg"></a>-->
-            <!--<a href="#!name"><span class="white-text name">John Doe</span></a>-->
-            <!--<a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>-->
-            <!--</div></li>-->
-            <!--<li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>-->
-            <!--<li><a href="#!">Second Link</a></li>-->
-            <!--<li><div class="divider"></div></li>-->
-            <!--<li><a class="subheader">Subheader</a></li>-->
-            <!--<li><a class="waves-effect" href="#!">Third Link With Waves</a></li>-->
-            <!--</ul>-->
         </div>
         <div class="col s10" style="margin-top:20px;">
             {{--            {{ dd(get_defined_vars()) }}--}}

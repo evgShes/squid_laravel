@@ -119,5 +119,48 @@ jQuery(function ($) {
 
         }
     });
-
+    var mas_labels = [], mas_series = [], data_arr = [];
+    $.ajax({
+        url:'/js/top/resources',
+        method: 'post',
+        success: function(data){
+            $.each(data.records,function(key,val){
+                // mas_labels.push(val.url);
+                //  mas_series.push(val.cnt);
+                data_arr.push({
+                    name:val.url,
+                    y:val.cnt,
+                });
+            });
+            Highcharts.chart('container', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Рейтинг популярных сайтов за все время'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    name: 'Соотношение',
+                    colorByPoint: true,
+                    data: data_arr
+                }]
+            });
+        }
+    });
 });

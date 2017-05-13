@@ -20,7 +20,7 @@ Route::get('logout', [
     'as' => 'logout',
     'uses' => 'Auth\LoginController@logout'
 ]);
-
+//
 Route::get('v/{name?}', [
     'as' => 'view',
     function ($name) {
