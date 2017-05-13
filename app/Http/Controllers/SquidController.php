@@ -15,10 +15,6 @@ class SquidController extends Controller
 {
     use FunctionTrait;
 
-    public function test(Request $request)
-    {
-
-    }
 
     public function test(Request $request)
     {
@@ -35,6 +31,12 @@ class SquidController extends Controller
     }
 
 
+    public function getTopResources(Request $request)
+    {
+        $query = $this->topResources()->get();
+        return response()->json(['records' => $query]);
+    }
+
     public function topResources()
     {
         $query = Squid::select(DB::raw('squids.url, squids.request_method as method, COUNT(*) as cnt'))
@@ -42,9 +44,11 @@ class SquidController extends Controller
             ->groupBy('url', 'method')
             ->orderBY('cnt', 'DESC')
             ->limit(10);
-        dd($query->get());
+
+        return $query;
     }
-    
+
+
     public function getAclDeny()
     {
         $string = sprintf('

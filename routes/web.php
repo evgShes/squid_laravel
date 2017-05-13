@@ -133,4 +133,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     });
 
+    Route::group(['prefix' => 'js'], function () {
+        Route::post('top/resources', 'SquidController@getTopResources');
+    });
 });
