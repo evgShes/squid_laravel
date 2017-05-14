@@ -30,7 +30,7 @@
         <li><a href="{{ route('logout') }}">Выход</a></li>
     </ul>
 
-    <nav class="header-background" id="site_header">
+    <nav class="cyan accent-4" id="site_header">
         <div class="nav-wrapper">
             <a href="{{ url('/') }}" class="brand-logo right">{{ $main_title or '' }}</a>
             <ul id="nav-mobile" class="left">
@@ -44,7 +44,7 @@
             <ul id="slide-out" class="side-nav">
 
                 <li><div class="userView">
-                        <div class="background header-background">
+                        <div class="background cyan accent-4">
                             {{--<img src="{{asset('img/head_img.jpg')}}">--}}
                         </div>
                         <a href="" class="buttonshow" data-activates="slide-out"><i class="material-icons left">perm_identity</i></a>
@@ -63,7 +63,7 @@
                             </div>
                         </li>
                         <li class="bold"><a class="collapsible-header  waves-effect waves-teal"><i
-                                        class="material-icons">settings_applications</i>Логирование</a>
+                                        class="material-icons">library_books</i>Логирование</a>
                             <div class="collapsible-body">
                                 <ul>
                                     {{--<li><a href="#!" class="collection-item">Поиск</a></li>--}}
@@ -88,6 +88,9 @@
                                     </li>
                                 </ul>
                             </div>
+                        </li>
+                        <li class="bold"><a class="collapsible-header waves-effect waves-teal"
+                                            href="{{ route('logout') }}"><i class="material-icons">input</i>Выход</a>
                         </li>
                     </ul>
                 </li>

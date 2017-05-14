@@ -76,6 +76,7 @@ http_access deny deny_rules
     {
         $response = false;
         $file_path = $this->getPathAccessLog();
+//        dd($file_path);
         $file = file($file_path);
         if (file_exists($file_path)) {
             $file = file($file_path);

@@ -48,8 +48,9 @@
                         <?php
                         $user_data = $record->relUser;
                         ?>
+                        {{--{{ dd($record, $user_data) }}--}}
                         <tr>
-                            <td>{{ $record->client_address}}@if($user_data->employer_name)
+                            <td>{{ $record->client_address}}@if($user_data)
                                     ({{ $user_data->employer_name }}) @endif</td>
                             <td>@if(!empty($user_data->employer_department)) {{ $user_data->getDepartment()[$user_data->employer_department] }} @endif</td>
                             <td>{{ $record->time_convert or ''}}</td>

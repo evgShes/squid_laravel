@@ -29,9 +29,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col m12">
-                <select name="log_type[]" id="" multiple>
-                    <option value="" disabled></option>
+            <div class="col m12 input-field">
+                <select name="log_type[]" multiple id="log_type">
+                    <option value="" disabled>Выберите метод</option>
                     <option value="1" @if(isset($log_type) && in_array('1',$log_type)) selected @endif>Метод "POST"
                     </option>
                     <option value="2" @if(isset($log_type) && in_array('2',$log_type)) selected @endif>Метод "GET"
@@ -43,6 +43,7 @@
                         запрещенным адресам(403)
                     </option>
                 </select>
+                <label>Метод:</label>
             </div>
         </div>
     </form>

@@ -24,11 +24,10 @@
 </head>
 <body style="background-image: url({{ asset('img/luxfon.jpg') }})">
 <header>
-    <nav class="indigo darken-3"
+    <nav class="accent-4 cyan"
          style="background-image: url({{ asset('img/Network.jpg') }}); background-position: right bottom; background-size: 100%">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">Система распределения сетевыми ресурасами
-                ЕРЦP</a>
+            <a href="#" class="brand-logo right">Web-сервис наблюдения активности пользователей</a>
         </div>
     </nav>
 </header>
