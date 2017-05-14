@@ -84,7 +84,8 @@
                             <div class="collapsible-body" style="">
                                 <ul>
                                     <li><a href="{{ route('site.view') }}" class="collection-item">Настройки</a></li>
-                                    <li><a href="{{ route('view','control_panel.report') }}" class="collection-item">Отчеты</a></li>
+                                    <li><a href="{{ route('control_panel.report') }}" class="collection-item">Отчеты</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
