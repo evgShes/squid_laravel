@@ -33,14 +33,25 @@ class SquidController extends Controller
 
     public function getTopResources(Request $request)
     {
-        $query = $this->topResources()->get();
+
+        $query = $this->topResources();
+        if ($request->has('static_date_from_submit') || $request->has('static_date_to_submit')) {
+            $static_date_from_submit = ($request->has('static_date_from_submit')) ? $request->static_date_from_submit . ' 00:00:00' : null;
+            $static_date_to_submit = ($request->has('static_date_to_submit')) ? $request->static_date_to_submit . ' 23:59:59' : null;
+            $query = $query->whereBetween('time_convert', [$static_date_from_submit, $static_date_to_submit]);
+        }
+
+        $query = $query->get();
         return response()->json(['records' => $query]);
     }
 
     public function topResources()
     {
         $query = Squid::select(DB::raw('squids.url, squids.request_method as method, COUNT(*) as cnt'))
-            ->where(['request_method' => 'GET'])->orWhere(['request_method' => 'POST'])
+            ->where(function ($q) {
+                $q->where(['request_method' => 'GET']);
+                $q->orWhere(['request_method' => 'POST']);
+            })
             ->groupBy('url', 'method')
             ->orderBY('cnt', 'DESC')
             ->limit(10);

@@ -119,48 +119,58 @@ jQuery(function ($) {
 
         }
     });
-    var mas_labels = [], mas_series = [], data_arr = [];
-    $.ajax({
-        url:'/js/top/resources',
-        method: 'post',
-        success: function(data){
-            $.each(data.records,function(key,val){
-                // mas_labels.push(val.url);
-                //  mas_series.push(val.cnt);
-                data_arr.push({
-                    name:val.url,
-                    y:val.cnt,
+
+    function getResources(data_form = {}) {
+        var data_arr = [];
+        $.ajax({
+            url: '/js/top/resources',
+            method: 'post',
+            data: data_form,
+            success: function (data) {
+                $.each(data.records, function (key, val) {
+                    // mas_labels.push(val.url);
+                    //  mas_series.push(val.cnt);
+                    data_arr.push({
+                        name: val.url,
+                        y: val.cnt,
+                    });
                 });
-            });
-            Highcharts.chart('container', {
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false,
-                    type: 'pie'
-                },
-                title: {
-                    text: 'Рейтинг популярных сайтов за все время'
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: false
-                        },
-                        showInLegend: true
-                    }
-                },
-                series: [{
-                    name: 'Соотношение',
-                    colorByPoint: true,
-                    data: data_arr
-                }]
-            });
-        }
+                Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Рейтинг популярных сайтов за все время'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Соотношение',
+                        colorByPoint: true,
+                        data: data_arr
+                    }]
+                });
+            }
+        });
+    }
+
+    getResources();
+    $('#btn-stat').on('click', function (e) {
+        let form_data = $(this).closest('form').serialize();
+        getResources(form_data);
     });
-});
+}); // END

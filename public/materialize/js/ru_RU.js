@@ -10,7 +10,7 @@ jQuery.extend( jQuery.fn.pickadate.defaults, {
     close: 'закрыть',
     firstDay: 1,
     format: 'd mmmm yyyy г.',
-    formatSubmit: 'yyyy/mm/dd',
+    formatSubmit: 'yyyy-mm-dd',
     showMonthsShort: true,
     weekdaysLetter:[ 'В', 'П', 'В', 'С', 'Ч', 'П', 'С' ]
 });
