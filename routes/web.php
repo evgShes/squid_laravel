@@ -85,12 +85,27 @@ Route::group(['middleware' => 'auth'], function () {
             'uses' => 'SquidController@getReport'
         ]);
 
+        Route::get('statistics', [
+            'as' => 'statistics',
+            function(){
+            return view('control_panel.statistics');
+            }
+        ]);
+
     });
 
     Route::group(['prefix' => 'js'], function () {
         Route::post('top/resources', [
             'as' => 'top.res',
             'uses' => 'SquidController@getTopResources'
+        ]);
+    });
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', [
+            'as' => 'add_users',
+           function(){
+            return view('systems.add_users');
+           }
         ]);
     });
 });

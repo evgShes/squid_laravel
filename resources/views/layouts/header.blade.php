@@ -22,7 +22,7 @@
     </script>
 
 </head>
-<body>
+<body style="background: rgb(249, 250, 255)">
 
 <header>
     <ul id="dropdown1" class="dropdown-content">
@@ -31,7 +31,7 @@
     </ul>
     <nav style="background-image: url({{ asset('img/Network.jpg') }}); background-position: right bottom; background-size: 100%" class="indigo darken-3">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">Система распределения сетевыми ресурасами
+            <a href="#" class="brand-logo center">Система управления распределением сетевых ресурсов
                 ЕРЦP</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">perm_identity</i>@if(Auth::check()) {{ Auth::user()->login  }}@endif<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -47,8 +47,9 @@
                     <div class="collapsible-header"><i class="material-icons">recent_actors</i>Пользователи</div>
                     <div class="collapsible-body">
                         <div class="collection">
-                            <a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a>
-                            <a href="{{ route('squid.view') }}" class="collection-item">Логи</a>
+                            <a href="{{ route('add_users') }}" class="collection-item">Добавить сотрудника</a>
+                            <a href="#" class="collection-item">Добавление квоты сотрудникам</a>
+                            <a href="{{ route('squid.view') }}" class="collection-item">Squid-журнал</a>
                         </div>
                     </div>
                 </li>
@@ -56,7 +57,8 @@
                     <div class="collapsible-header"><i class="material-icons">settings_applications</i>Система</div>
                     <div class="collapsible-body">
                         <div class="collection">
-                            <a href="#!" class="collection-item">Поиск</a>
+                            <a href="{{ route('statistics') }}" class="collection-item">Статистика</a>
+                            <a href="{{ route('control_panel.report') }}" class="collection-item">Отчеты</a>
                         </div>
                     </div>
                 </li>
@@ -65,9 +67,9 @@
                     <div class="collapsible-body">
                         <div class="collection">
                             {{--<a href="{{ url('views/control_panel/statistics') }}" class="collection-item">Статистика</a>--}}
-                            <a href="{{ route('view','control_panel.statistics') }}" class="collection-item">Статистика</a>
+
                             <a href="{{ route('site.view') }}" class="collection-item">Настройки</a>
-                            <a href="{{ route('control_panel.report') }}" class="collection-item">Отчеты</a>
+
 
                         </div>
                     </div>

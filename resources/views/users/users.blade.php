@@ -33,7 +33,7 @@
         <table class="bordered highlight responsive-table">
             <thead>
             <tr>
-                <th>Ф.И.О/ ИП адрес</th>
+                <th>IP-адрес</th>
                 <th>Отдел</th>
                 <th>Дата и время</th>
                 <th>Тип соединения</th>

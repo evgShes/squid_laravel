@@ -1,2 +1,2 @@
-materializecss.com
-laravel.com
+dic.academic.ru
+vk.com

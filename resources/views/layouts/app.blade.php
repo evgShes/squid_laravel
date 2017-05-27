@@ -22,11 +22,11 @@
         ]) !!};
     </script>
 </head>
-<body  style="background-image: url({{ asset('img/luxfon.jpg') }})">
+<body  style="background-image: url({{ asset('img/luxfon.jpg') }});    background-size: 100%;">
 <header>
     <nav class="indigo darken-3" style="background-image: url({{ asset('img/Network.jpg') }}); background-position: right bottom; background-size: 100%">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">Система распределения сетевыми ресурасами
+            <a href="#" class="brand-logo center">Система распределения сетевыми ресурсами
                 ЕРЦP</a>
         </div>
     </nav>
