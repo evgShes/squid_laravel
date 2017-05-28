@@ -32,7 +32,8 @@ class UsersList extends Model
      */
     public function getDepartment()
     {
-        return $this->department;
+        if(!empty($this->employer_department))
+        return $this->department[$this->employer_department];
     }
 
 

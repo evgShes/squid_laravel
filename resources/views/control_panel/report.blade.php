@@ -14,12 +14,12 @@
             <div class="row">
                 <div class=" input-field col s12">
                     <select name="user">
-                        <option value="" disabled selected>Выберите пользователя</option>
+                        <option value="" disabled selected>Выберите сотрудника</option>
                         @foreach($users as $user)
                             <option value="{{ $user->id }}">{{ $user->employer_name or '' }}</option>
                         @endforeach
                     </select>
-                    <label>Пользователь:</label>
+                    <label>Сотрудник:</label>
                 </div>
             </div>
             <div class="input-field col s12">

@@ -73,4 +73,9 @@ class SiteController extends Controller
         }
         return response()->json($response);
     }
+//    public function journal()
+//    {
+//        $journal = UsersList::all();
+//        return view('systems.journal', ['journal'=>$journal]);
+//    }
 }

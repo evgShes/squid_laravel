@@ -41,6 +41,16 @@ Route::group(['middleware' => 'auth'], function () {
         'uses' => 'UsersController@saveEmployer'
     ]);
 
+    Route::get('user/list', [
+        'as' => 'users.list_users',
+        'uses' => 'UsersController@usersList'
+    ]);
+
+    Route::get('user/quota', [
+        'as' => 'users.users_quota',
+        'uses' => 'UsersController@usersQuota'
+    ]);
+
     Route::group(['prefix'=>'site'],function (){
         //     Добавление сайтов
         Route::post('/',[

@@ -48,7 +48,8 @@
                     <div class="collapsible-body">
                         <div class="collection">
                             <a href="{{ route('add_users') }}" class="collection-item">Добавить сотрудника</a>
-                            <a href="#" class="collection-item">Добавление квоты сотрудникам</a>
+                            <a href="{{ route('users.list_users') }}" class="collection-item">Список сотрудников</a>
+                            <a href="{{ route('users.users_quota') }}" class="collection-item">Добавление квоты сотрудникам</a>
                             <a href="{{ route('squid.view') }}" class="collection-item">Squid-журнал</a>
                         </div>
                     </div>
@@ -59,6 +60,7 @@
                         <div class="collection">
                             <a href="{{ route('statistics') }}" class="collection-item">Статистика</a>
                             <a href="{{ route('control_panel.report') }}" class="collection-item">Отчеты</a>
+                            <a href="{{ url('v/systems.journal') }}" class="collection-item">Журнал отчетов</a>
                         </div>
                     </div>
                 </li>
