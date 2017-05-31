@@ -4,8 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col s8 offset-s2">
-                <h2 class="header">Авторизация</h2>
-                <div class="card horizontal">
+                <h3 class="header">Авторизация</h3>
+                <div class="card horizontal" style="border-radius: 10px;">
                     <div class="card-image">
                         {{--<img src="{{ asset('img/luxfon.jpg') }}">--}}
                     </div>

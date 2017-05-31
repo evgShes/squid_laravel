@@ -22,7 +22,7 @@
     </script>
 
 </head>
-<body>
+<body style="background: rgb(242, 250, 254)">
 
 <header>
     <ul id="dropdown1" class="dropdown-content" data-activates="dropdown1">
@@ -92,7 +92,8 @@
                                     <li><a href="{{ route('control_panel.report') }}" class="collection-item">Отчеты</a>
                                     </li>
                                     <li><a href="{{ route('statistics') }}" class="collection-item">Статистика</a></li>
-                                    <li><a href="#" class="collection-item">Активность</a></li>
+                                    <li><a href="{{ url('v/systems.action') }}" class="collection-item">Активность</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

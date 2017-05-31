@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row">
         <div class="col s8 offset-s2">
-            <h2 class="header">Регистрация</h2>
-            <div class="card horizontal">
+            <h3 class="header">Регистрация</h3>
+            <div class="card horizontal" style="border-radius: 10px;">
                 <div class="card-image">
                     {{--<img src="http://lorempixel.com/100/190/nature/6">--}}
                 </div>
