@@ -74,8 +74,6 @@
                                         <a href="{{ route('apache.log') }}" class="collection-item">Apache-логи</a>
                                     </li>
 
-                                    <li><a href="{{ route('statistics') }}" class="collection-item">Статистика</a></li>
-
                                     {{--<li><a href="{{ route('view','systems.add_users') }}" class="collection-item">Добавить пользователя</a></li>--}}
                                 </ul>
                             </div>
@@ -84,8 +82,17 @@
                             <div class="collapsible-body" style="">
                                 <ul>
                                     <li><a href="{{ route('site.view') }}" class="collection-item">Настройки</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i
+                                        class="material-icons">settings</i>Инструмены</a>
+                            <div class="collapsible-body" style="">
+                                <ul>
                                     <li><a href="{{ route('control_panel.report') }}" class="collection-item">Отчеты</a>
                                     </li>
+                                    <li><a href="{{ route('statistics') }}" class="collection-item">Статистика</a></li>
+                                    <li><a href="#" class="collection-item">Активность</a></li>
                                 </ul>
                             </div>
                         </li>
