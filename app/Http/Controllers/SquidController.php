@@ -136,7 +136,7 @@ http_access deny deny_rules
             return true;
         }
     }
-
+// перезагрузка squid
     public function squidRestart(Request $request)
     {
         $response = false;
@@ -145,13 +145,14 @@ http_access deny deny_rules
             shell_exec("net start Squid");
             $response = true;
         }
-//        $recon = shell_exec("squid -n Squid -f c:/squid/etc/squid.conf -k reconfigure");
-//        if ($recon) $response = true;
         if ($request->ajax()) return response()->json(true);
         return $response;
     }
+    //        $recon = shell_exec("squid -n Squid -f c:/squid/etc/squid.conf -k reconfigure");
+//        if ($recon) $response = true;
 
 
+//
     public function initialDeny()
     {
         $response = false;
@@ -218,7 +219,6 @@ http_access deny deny_rules
             'records' => $records,
             'users' => UsersList::all(),
         ]);
-//        dd($data);
         return view('users.users', $data);
     }
 
@@ -233,7 +233,6 @@ http_access deny deny_rules
 
     public function getReport(Request $request)
     {
-//        dd($request->all());
         if ($request->has('report_btn')) {
             $records = Squid::with('relUser');
 
@@ -253,7 +252,6 @@ http_access deny deny_rules
                     case 2:
                         $date_from = date('Y-m-d', strtotime('last day'));
                         $date_to = date('Y-m-d', strtotime('last day'));
-//                    $records->whereBetween('time_convert', [$date_from, $date_to]);
                         break;
                     case 3:
                         if ($request->has([$request->report_date_from_submit, $request->report_date_to_submit])) {
@@ -270,7 +268,6 @@ http_access deny deny_rules
                 $records->whereBetween('time_convert', [$date_from, $date_to]);
             }
 
-//            dd($records->get());
             return $this->renderReport($records);
         } else {
             return redirect()->back();
@@ -287,7 +284,6 @@ http_access deny deny_rules
             $render_view = view('squid.render_report', $data)->render();
             $file_name = date('dmYHis');
             $file_name = "files/$file_name.html";
-//            dd(Storage::put($file_name, $render_view,'public'));
             Storage::put($file_name, $render_view, 'public');
             return response()->download(storage_path('app/' . $file_name));
         }

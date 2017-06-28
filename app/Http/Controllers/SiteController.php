@@ -41,9 +41,11 @@ class SiteController extends Controller
         return response()->json($resp);
     }
 
+
+
+
     public function block(Request $request)
     {
-//        dd($request->all());
         $response = false;
         $path_to_file_dom = $this->path_domains_rules;
         $sqCont = new SquidController();
